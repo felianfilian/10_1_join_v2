@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JOIN</title>
-    <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="shortcut icon"
       type="image/x-icon"
       href="./img/logo_favicon.png"
     />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/modules.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -65,6 +66,31 @@
       </div>
     </nav>
 
+    <div class="content-area">
+      <div class="header">
+        <div class="header-left">
+          <div class="header-title">Kanban Project Managemant Tool</div>
+          <img class="header-logo" src="./img/logo.svg" alt="" />
+        </div>
+      
+        <div class="header-user-info">
+          <a class="btn-header-info" href="./join_info.html">
+            <img src="./icons/help_default.svg" alt="" />
+          </a>
+          <div class="header-avatar" style="background-color: #fcba03">
+            <div id="avatar-menu" class="d-none">
+              <a href="./legalNotice.html">Legal Notice</a>
+              <a href="./privacyPolicy.html">Privacy Policy</a>
+              <a href="./index.html">Logout</a>
+            </div>
+            <div id="avatar-initials" onclick="toggleAvatarMenu()">__</div>
+          </div>
+        </div>
+      </div>
+      <!-- page content here -->
+    </div>
+
     <script src="./js/script.js"></script>
+    <script src="./js/backend.js"></script>
   </body>
 </html>

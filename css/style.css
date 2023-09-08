@@ -27,13 +27,16 @@
   src: url("../fonts/inter-v12-latin-900.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
+/* -------------------------------------------------------------------- */
 /* main tag styling */
 
 body {
-  overflow: hidden;
-  background-color: #f6f7f8;
   box-sizing: border-box;
+  overflow: hidden;
+
   margin: 0;
+
+  background-color: #f6f7f8;
   font-family: "Inter", Helvetica, sans-serif;
   font-size: 18px;
 }
@@ -51,8 +54,14 @@ p {
   margin-block-end: 0;
 }
 
-/* main tag styling END */
+/* ----------------------------------------------------------------------- */
+/* basic styling */
 
+.d-none {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------------ */
 /* logo animation */
 
 #main-logo {
@@ -92,21 +101,7 @@ p {
   height: 122px;
 }
 
-/* logo animation END */
-
-/* index styling */
-
-#index-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100vw;
-  height: 100vh;
-}
-
-/* index styling END */
-
+/* ------------------------------------------------------------------------- */
 /* navbar */
 
 .navbar {
@@ -194,6 +189,100 @@ p {
   margin-top: 32px;
 }
 
+/* -------------------------------------------------------------------- */
+/* content area */
+
+.content-area {
+  margin-left: 230px;
+}
+
+@media (max-width: 768px) {
+  .content-area {
+    margin: 0;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* header */
+
+.header {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 24px;
+
+  background-color: #fff;
+}
+
+.header-title {
+  font-size: 24px;
+}
+
+.header-logo {
+  display: none;
+  width: 48px;
+  height: 48px;
+
+  cursor: none;
+}
+
+.header-user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-header-info {
+  cursor: pointer;
+}
+
+.header-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#avatar-menu {
+  position: absolute;
+  top: 64px;
+  right: 48px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  padding: 16px;
+
+  background-color: #2a3647;
+  border-radius: 16px 0 16px 16px;
+}
+
+#avatar-menu a {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .header-title {
+    display: none;
+  }
+
+  .header-logo {
+    display: block;
+  }
+}
+
+/* --------------------------------------------------------------------- */
+/* RESPONSIVE */
+
 @media (max-width: 768px) {
   .navbar {
     top: auto;
@@ -242,5 +331,3 @@ p {
     display: none;
   }
 }
-
-/* navbar END */

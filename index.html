@@ -4,16 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
-    <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="shortcut icon"
       type="image/x-icon"
       href="./img/logo_favicon.png"
     />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/modules.css" />
   </head>
   <body onload="indexLoad()">
     <img id="main-logo" src="./img/logo.svg" alt="JOIN" />
-    <div id="index-content"></div>
+    <div id="index-content">
+      <div class="login-header">
+        Not a Join User?
+        <button>Sign Up</button>
+      </div>
+      <div class="login-container">
+        <div class="main-card">
+          <div>Log In</div>
+          <input type="text" placeholder="Email" />
+          <input type="text" placeholder="Password" />
+          <input type="checkbox" name="remember-me" />
+          <label for="remember-me">Remember me</label>
+          <a href="#">I Forgot my password</a>
+          <button>Login</button>
+          <button>Guest Login</button>
+        </div>
+      </div>
+      <div class="login-footer">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Legal Notice</a>
+      </div>
+    </div>
     <script src="./js/script.js"></script>
+    <script src="./js/backend.js"></script>
   </body>
 </html>

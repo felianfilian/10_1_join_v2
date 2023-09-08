@@ -1,0 +1,67 @@
+/* ------------------------------------------------ */
+/* index styling */
+
+#index-content {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;
+  align-items: center; */
+
+  width: auto;
+  height: auto;
+
+  padding: 32px;
+}
+
+/* ------------------------------------------------- */
+/* login page */
+
+.login-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+  height: 15vh;
+}
+
+.login-container {
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 65vh;
+}
+
+.login-footer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+
+  width: 100%;
+  height: 10vh;
+}
+
+.main-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: 60vw;
+
+  padding: 32px;
+
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+}
