@@ -61,6 +61,32 @@ p {
   display: none !important;
 }
 
+.fs-32 {
+  font-size: 32px;
+}
+
+.fs-b {
+  font-weight: bold;
+}
+
+.container {
+  box-sizing: border-box;
+
+  padding: 48px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 4px;
+  }
+}
+
 /* ------------------------------------------------------------------------ */
 /* logo animation */
 
