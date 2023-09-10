@@ -162,11 +162,13 @@
   }
 
   .sum-main {
+    position: relative;
     justify-content: center;
   }
 
   .sum-greeting {
     position: absolute;
+    top: 0px;
     opacity: 1;
 
     justify-content: center;

@@ -8,6 +8,16 @@ function indexLoad() {
 }
 
 /**
+ * load of main content
+ */
+function mainLoad(page) {
+  document.getElementById("main-content").innerHTML = `
+  <div w3-include-html="${page}"></div>
+  `;
+  includeHTML();
+}
+
+/**
  * show and hide the header menu
  */
 function toggleAvatarMenu() {

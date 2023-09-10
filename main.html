@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modules.css" />
   </head>
-  <body>
+  <body onload="mainLoad('./templates/summary.html')">
     <nav class="navbar">
       <img class="navbar-logo" src="./img/logo_light.svg" alt="JOIN" />
       <div class="navbar-container">
-        <a id="nav01" class="navbar-item" href="#" onclick="setNavID('nav01')">
+        <a id="nav01" class="navbar-item" href="#" onclick="mainLoad('./templates/summary.html')">
           <img src="./icons/icons_summary.svg" alt="Summary" />
           <p>Summary</p>
         </a>
@@ -24,7 +24,7 @@
           id="nav02"
           class="navbar-item"
           href="#"
-          onclick="setNavID('nav02')"
+          onclick="mainLoad('./templates/board.html')"
         >
           <img src="./icons/icons_board.svg" alt="Board" />
           <p>Board</p>
@@ -33,7 +33,7 @@
           id="nav03"
           class="navbar-item"
           href="#"
-          onclick="setNavID('nav03')"
+          onclick="mainLoad('./templates/addTask.html')"
         >
           <img src="./icons/icons_add_task.svg" alt="Add Task" />
           <p>Add Task</p>
@@ -42,7 +42,7 @@
           id="nav04"
           class="navbar-item"
           href="#"
-          onclick="setNavID('nav04')"
+          onclick="mainLoad('./templates/contacts.html')"
         >
           <img src="./icons/icons_contacts.svg" alt="Contacts" />
           <p>Contacts</p>
@@ -52,14 +52,14 @@
             id="nav05"
             class="navbar-item"
             href="#"
-            onclick="setNavID('nav05')"
+            onclick="mainLoad('./templates/privacyPolicy.html')"
             >Privacy Policy</a
           >
           <a
             id="nav06"
             class="navbar-item"
             href="#""
-            onclick="setNavID('nav06')"
+            onclick="mainLoad('./templates/legalNotice.html')"
             >Legal Notice</a
           >
         </div>
@@ -88,9 +88,10 @@
         </div>
       </div>
       
-      <div id="content-page">
-        <!-- content here -->
-      </div>
+      <div id="main-content">
+        <div w3-include-html="./templates/summary.html"></div>
+
+         </div>
 
     </div>
 
