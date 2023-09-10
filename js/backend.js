@@ -1,6 +1,5 @@
-// backend indentifier
-const STORAGE_TOKEN = "HXZH6LGQSB8KPYZZ39S7IBUKJD8VHEQUH375LYY8";
-// URL Backend
+// backend indentifier and backend URL
+const STORAGE_TOKEN = "6BY3AH5WRXX6C1HPI50FRBHV69JP7398N6RLPF5Z";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 /**

@@ -1,3 +1,20 @@
+let users = [];
+let todos = [
+  {
+    assignedContact: ["Jessica J. Rooker"],
+    category: "User Stories",
+    categoryColor: "#7046D0",
+    contactColor: ["hsl(288, 99%, 42%)"],
+    date: "2023-09-22",
+    description: "recreate CSS Design Kochwelt",
+    id: 0,
+    prio: ["LOW", "./icons/priority_low.svg"],
+    step: "col-01",
+    subtasks: [{}],
+    title: "CSS Design",
+  },
+];
+
 /**
  * initial load of index html
  */
@@ -44,4 +61,25 @@ function loadHTML(divElement, htmlPath) {
       console.error("Error fetching content:", error);
       targetElement.innerHTML = "Page not available";
     });
+}
+
+/**
+ * generate 2 characters from the first character of the first and last name
+ * @param name full name as string
+ * @returns 2 characters as initial string
+ */
+function generateInitials(name) {
+  let initials = name.split(" ");
+  if (initials.length == 1) {
+    return initials[0][0].toUpperCase() + initials[0][1].toUpperCase();
+  } else if (initials.length == 2) {
+    return initials[0][0].toUpperCase() + initials[1][0].toUpperCase();
+  } else if (initials.length >= 3) {
+    return (
+      initials[0][0].toUpperCase() +
+      initials[initials.length - 1][0].toUpperCase()
+    );
+  } else {
+    return "__";
+  }
 }

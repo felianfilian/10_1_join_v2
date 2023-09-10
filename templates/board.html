@@ -1,3 +1,99 @@
 <div class="container">
-  <h1>Board</h1>
+  <div id="kanban-board">
+    <div class="board-header">
+      <h1>Board</h1>
+      <div class="board-header-right">
+        <div class="searchbar">
+          <input
+            id="board-search"
+            type="text"
+            placeholder="Find Task"
+            onkeyup="searchTasks()"
+          />
+          <img class="btn-search" src="./icons/icon_search.svg" alt="" />
+        </div>
+        <button onclick="newTaskColumn('col-01')" class="button btn-black">
+          <a>Add Task +</a>
+        </button>
+      </div>
+    </div>
+    <div class="board">
+      <div class="col col-01">
+        <div class="col-header">
+          <h3>To Do</h3>
+          <img
+            onclick="newTaskColumn('col-01')"
+            class="btn-add"
+            src="./icons/plus.svg"
+            alt="+"
+          />
+        </div>
+        <div
+          id="col-01"
+          class="todo-list"
+          ondrop="moveTo('col-01'); removeHighlight('col-01')"
+          ondragleave="removeHighlight('col-01')"
+          ondragover="allowDrop(event); highlight('col-01')"
+        >
+          <!-- <div>
+              <p>title</p>
+            </div> -->
+        </div>
+      </div>
+      <div class="col col-02">
+        <div class="col-header">
+          <h3>In Progress</h3>
+          <img
+            onclick="newTaskColumn('col-02')"
+            class="btn-add"
+            src="./icons/plus.svg"
+            alt="+"
+          />
+        </div>
+        <div
+          id="col-02"
+          class="todo-list"
+          ondrop="moveTo('col-02'); removeHighlight('col-02')"
+          ondragleave="removeHighlight('col-02')"
+          ondragover="allowDrop(event); highlight('col-02')"
+        >
+          <!-- todolist -->
+        </div>
+      </div>
+      <div class="col col-03">
+        <div class="col-header">
+          <h3>Await Feedback</h3>
+          <img
+            onclick="newTaskColumn('col-03')"
+            class="btn-add"
+            src="./icons/plus.svg"
+            alt="+"
+          />
+        </div>
+        <div
+          id="col-03"
+          class="todo-list"
+          ondrop="moveTo('col-03'); removeHighlight('col-03')"
+          ondragleave="removeHighlight('col-03')"
+          ondragover="allowDrop(event); highlight('col-03')"
+        >
+          <!-- todolist -->
+        </div>
+      </div>
+      <div class="col col-04">
+        <div class="col-header">
+          <h3>Done</h3>
+        </div>
+        <div
+          id="col-04"
+          class="todo-list"
+          ondrop="moveTo('col-04'); removeHighlight('col-04')"
+          ondragleave="removeHighlight('col-04')"
+          ondragover="allowDrop(event); highlight('col-04')"
+        >
+          <!-- todolist -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
