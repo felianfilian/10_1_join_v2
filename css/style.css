@@ -1,3 +1,8 @@
+/* basic colors
+light blue = #29abe2
+
+*/
+
 /* basic font */
 
 /* inter-regular - latin */
@@ -44,6 +49,22 @@ a {
   text-decoration: none;
 }
 
+button {
+  padding: 12px 24px;
+
+  background-color: #fff;
+  color: #000;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+button:hover {
+  border: 2px solid #29abe2;
+  color: #29abe2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 h1,
 h2,
 h3,
@@ -55,10 +76,17 @@ p {
 
 input {
   padding: 16px;
+  width: 80%;
 
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+  outline: none;
   font-size: 18px;
+}
+
+input:focus {
+  border-color: #29abe2;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 /* -------------------------------------------------- */
@@ -76,15 +104,69 @@ input {
   font-weight: bold;
 }
 
+.button-black {
+  background-color: #000;
+  color: #fff;
+}
+
+.button-black:hover {
+  background-color: #29abe2;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.gap-32 {
+  gap: 32px;
+}
+
+.f-wrap {
+  flex-wrap: wrap;
+}
+
 .container {
   box-sizing: border-box;
 
   padding: 48px;
 }
 
+.main-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  width: 50%;
+  max-width: 60vw;
+
+  padding: 32px;
+
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+}
+
+.blue-hor-divider {
+  margin: 16px 0;
+
+  border: 2px solid #29abe2;
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 16px;
+  }
+
+  .main-card {
+    width: 80%;
+    max-width: 80vw;
   }
 }
 

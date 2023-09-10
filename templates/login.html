@@ -1,20 +1,31 @@
 <div class="login-header">
   Not a Join User?
-  <button>Sign Up</button>
+  <button class="button-black">Sign Up</button>
 </div>
 <div class="login-container">
   <div class="main-card">
-    <div>Log In</div>
+    <div>
+      <h1>Log In</h1>
+      <div class="blue-hor-divider"></div>
+    </div>
     <input type="text" placeholder="Email" />
     <input type="text" placeholder="Password" />
-    <input type="checkbox" name="remember-me" />
-    <label for="remember-me">Remember me</label>
-    <a href="#">I Forgot my password</a>
-    <button>Login</button>
-    <button>Guest Login</button>
+    <div class="login-remmember-container">
+      <div class="flex-row">
+        <input type="checkbox" name="remember-me" />
+        <span><nobr>Remember me</nobr></span>
+      </div>
+      <div>
+        <a href="#">I Forgot my password</a>
+      </div>
+    </div>
+    <div class="flex-row gap-32 f-wrap">
+      <button class="button-black">Login</button>
+      <button onclick="window.location.href = 'main.html'">Guest Login</button>
+    </div>
   </div>
 </div>
 <div class="login-footer">
-  <a href="#">Privacy Policy</a>
-  <a href="#">Legal Notice</a>
+  <a href="templates/privacyPolicy.html" target="_blank">Privacy Policy</a>
+  <a href="templates/privacyPolicy.html" target="_blank">Legal Notice</a>
 </div>
