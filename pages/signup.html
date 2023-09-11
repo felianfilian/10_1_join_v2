@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/modules.css" />
   </head>
-  <body onload="indexLoad()">
+  <body>
     <img class="main-logo-fixed" src="../img/logo.svg" alt="JOIN" />
     <div class="signup-content">
       <div class="main-card">
@@ -37,13 +37,22 @@
           </div>
         </div>
         <div class="flex-row gap-32 f-wrap">
-          <button class="button-black" onclick="alert('SIGN UP')">
+          <button
+            class="button-black"
+            onclick="showMessage('You signed up successfully')"
+          >
             Sign Up
           </button>
         </div>
       </div>
     </div>
-    <script src="./js/script.js"></script>
-    <script src="./js/backend.js"></script>
+
+    <!-- message box module -->
+    <div id="message-box" class="message-box d-none">
+      <div id="message-card">My Message</div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/backend.js"></script>
   </body>
 </html>

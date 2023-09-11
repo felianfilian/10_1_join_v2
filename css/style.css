@@ -1,6 +1,6 @@
 /* basic colors
 light blue = #29abe2
-
+dark-grey = #2A3647
 */
 
 /* basic font */
@@ -157,6 +157,41 @@ input:focus {
 
   border: 2px solid #29abe2;
   width: 100%;
+}
+
+.message-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#message-card {
+  padding: 16px 24px;
+
+  border-radius: 12px;
+  background-color: #2a3647;
+  color: #fff;
+  opacity: 1;
+  animation: message-fade 2s ease-in-out forwards;
+}
+
+@keyframes message-fade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {

@@ -27,8 +27,8 @@ function indexLoad() {
 /**
  * load of main content
  */
-function mainLoad(page) {
-  document.getElementById("main-content").innerHTML = `
+function mainLoad(target, page) {
+  document.getElementById(target).innerHTML = `
   <div w3-include-html="${page}"></div>
   `;
   includeHTML();
@@ -82,4 +82,24 @@ function generateInitials(name) {
   } else {
     return "__";
   }
+}
+
+/**
+ * Sign Up
+ */
+function singUp() {
+  let signupName = document.getElementById("signup-name").value;
+  let signupEmail = document.getElementById("signup-email").value;
+  let signupPassword = document.getElementById("signup-password").value;
+}
+
+/**
+ * show message box
+ */
+function showMessage(message) {
+  document.getElementById("message-card").innerHTML = message;
+  document.getElementById("message-box").classList.remove("d-none");
+  setTimeout(() => {
+    document.getElementById("message-box").classList.add("d-none");
+  }, 2000);
 }
