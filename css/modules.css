@@ -6,8 +6,6 @@
 
   display: flex;
   flex-direction: column;
-  /*justify-content: center;
-  align-items: center; */
 
   width: auto;
   height: auto;
@@ -62,6 +60,20 @@
 
 /* ---------------------------------------------------- */
 /* summary */
+
+.signup-content {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  padding: 32px;
+}
 
 .sum-header {
   display: flex;
