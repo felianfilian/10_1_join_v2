@@ -75,8 +75,9 @@ p {
 }
 
 input {
-  padding: 16px;
+  padding: 12px;
   width: 80%;
+  max-width: 300px;
 
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -87,6 +88,12 @@ input {
 input:focus {
   border-color: #29abe2;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  input {
+    max-width: none;
+  }
 }
 
 /* -------------------------------------------------- */
@@ -202,6 +209,8 @@ input:focus {
   .main-card {
     width: 80%;
     max-width: 80vw;
+
+    padding: 32px 8px;
   }
 }
 
@@ -258,6 +267,17 @@ input:focus {
   top: 50px;
   width: 101px;
   height: 122px;
+}
+
+@media (max-width: 768px) {
+  .main-logo-fixed {
+    position: absolute;
+
+    left: 50px;
+    top: 30px;
+    width: 70px;
+    height: 84px;
+  }
 }
 
 /* ----------------------------------------------------- */

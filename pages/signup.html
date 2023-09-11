@@ -14,37 +14,43 @@
   </head>
   <body>
     <img class="main-logo-fixed" src="../img/logo.svg" alt="JOIN" />
-    <div class="signup-content">
-      <div class="main-card">
-        <div>
-          <h1>Sign Up</h1>
-          <div class="blue-hor-divider"></div>
-        </div>
-        <input type="text" id="signup-name" placeholder="Name" />
-        <input type="text" id="signup-email" placeholder="Email" />
-        <input type="password" id="signup-password" placeholder="Password" />
-        <input
-          type="password"
-          id="signup-password-confirm"
-          placeholder="Confirm Password"
-        />
-        <div class="login-remmember-container">
-          <div class="flex-row">
-            <input type="checkbox" name="remember-me" />
-            <span
-              ><nobr>I accept the <a>Privacy Policy</a></nobr></span
+    <div id="index-content">
+      <div class="signup-container">
+        <div class="main-card">
+          <div>
+            <h1>Sign Up</h1>
+            <div class="blue-hor-divider"></div>
+          </div>
+          <input type="text" id="signup-name" placeholder="Name" />
+          <input type="text" id="signup-email" placeholder="Email" />
+          <input type="password" id="signup-password" placeholder="Password" />
+          <input
+            type="password"
+            id="signup-password-confirm"
+            placeholder="Confirm Password"
+          />
+          <div class="login-remmember-container">
+            <div class="flex-row">
+              <input type="checkbox" name="remember-me" />
+              <span
+                ><nobr>I accept the <a>Privacy Policy</a></nobr></span
+              >
+            </div>
+          </div>
+          <div class="flex-row gap-32 f-wrap">
+            <button
+              class="button-black"
+              onclick="showMessage('You signed up successfully')"
             >
+              Sign Up
+            </button>
           </div>
         </div>
-        <div class="flex-row gap-32 f-wrap">
-          <button
-            class="button-black"
-            onclick="showMessage('You signed up successfully')"
-          >
-            Sign Up
-          </button>
-        </div>
       </div>
+    </div>
+    <div class="login-footer">
+      <a href="templates/privacyPolicy.html" target="_blank">Privacy Policy</a>
+      <a href="templates/privacyPolicy.html" target="_blank">Legal Notice</a>
     </div>
 
     <!-- message box module -->
