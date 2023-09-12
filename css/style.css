@@ -50,6 +50,11 @@ a {
 }
 
 button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
   padding: 12px 24px;
 
   background-color: #fff;
@@ -116,7 +121,13 @@ input:focus {
   color: #fff;
 }
 
-.button-black:hover {
+.button-grey {
+  background-color: #2a3647;
+  color: #fff;
+}
+
+.button-black:hover,
+.button-grey:hover {
   background-color: #29abe2;
   color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);

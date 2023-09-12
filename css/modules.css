@@ -514,3 +514,44 @@
 
 /* --------------------------------------------------- */
 /* Contacts */
+
+.contact-list {
+  display: flex;
+  overflow-y: scroll;
+
+  flex-direction: column;
+  gap: 16px;
+
+  max-width: 400px;
+  height: auto;
+
+  padding: 16px 16px 16px 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 8px;
+
+  cursor: pointer;
+}
+
+.contact-item:hover {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.contact-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 60px;
+  min-height: 60px;
+
+  background-color: #29abe2;
+  color: #fff;
+  border-radius: 50%;
+}
