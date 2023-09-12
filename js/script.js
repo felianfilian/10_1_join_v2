@@ -16,6 +16,13 @@ let todos = [
 ];
 
 /**
+ * main inital load
+ */
+function init() {
+  loadUsers();
+}
+
+/**
  * initial load of index html
  */
 function indexLoad() {
@@ -109,7 +116,7 @@ function login() {
 /**
  * Sign Up and save data to remoteStorage
  */
-function signUp() {
+async function signUp() {
   let signupName = document.getElementById("signup-name").value;
   let signupEmail = document.getElementById("signup-email").value;
   let signupPassword = document.getElementById("signup-password").value;
@@ -124,6 +131,7 @@ function signUp() {
   users.push(user);
 
   console.log(users);
+  await setItem("users", JSON.stringify(users));
   showMessage("You signed up successfully");
 }
 
@@ -137,7 +145,7 @@ function checkPasswordConfirm() {
     "signup-password-confirm"
   ).value;
   if (password != passwordConfirm) {
-    alert("not the same password");
+    showMessage("Not the same password", "#FF3D00");
     passwordConfirm = document.getElementById("signup-password-confirm").value =
       "";
     return false;
@@ -148,12 +156,13 @@ function checkPasswordConfirm() {
 /**
  * show message box
  */
-function showMessage(message) {
+function showMessage(message, bgColor = "#2a3647") {
   document.getElementById("message-card").innerHTML = message;
+  document.getElementById("message-card").style.backgroundColor = bgColor;
   document.getElementById("message-box").classList.remove("d-none");
   setTimeout(() => {
     document.getElementById("message-box").classList.add("d-none");
-  }, 2000);
+  }, 2200);
 }
 
 /**
@@ -175,7 +184,6 @@ function generateRandomColor() {
  * show users for debug
  */
 function showUserStorage() {
-  console.log(users);
   users.forEach((user) => {
     console.log(user);
   });

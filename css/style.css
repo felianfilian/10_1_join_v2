@@ -1,8 +1,10 @@
 /* basic colors
 light blue = #29abe2
-dark-grey = #2A3647
-light-grey = #A8A8A8
-lighter-grey = #f0f0f0
+grey-01 (dark) = #2A3647
+grey-02 = #D1D1D1
+grey-03 = #A8A8A8
+grey-04 (light) = #f0f0f0
+red-01 = #FF3D00
 */
 
 /* basic font */
@@ -428,6 +430,8 @@ input:focus {
   justify-content: space-between;
   align-items: center;
 
+  height: 10vh;
+
   padding: 12px 24px;
 
   background-color: #fff;
@@ -516,7 +520,7 @@ input:focus {
   .navbar-container {
     flex-direction: row;
     width: 100%;
-    height: auto;
+    height: 100px;
     margin: 0px;
   }
 
