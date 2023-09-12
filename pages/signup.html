@@ -15,23 +15,29 @@
   <body>
     <img class="main-logo-fixed" src="../img/logo.svg" alt="JOIN" />
     <div id="index-content">
-      <div class="signup-container">
+      <form class="signup-container" onsubmit="signUp(); return false;">
         <div class="main-card">
           <div>
             <h1>Sign Up</h1>
             <div class="blue-hor-divider"></div>
           </div>
-          <input type="text" id="signup-name" placeholder="Name" />
-          <input type="text" id="signup-email" placeholder="Email" />
-          <input type="password" id="signup-password" placeholder="Password" />
+          <input type="text" id="signup-name" placeholder="Name" required />
+          <input type="email" id="signup-email" placeholder="Email" required />
+          <input
+            type="password"
+            id="signup-password"
+            placeholder="Password"
+            required
+          />
           <input
             type="password"
             id="signup-password-confirm"
             placeholder="Confirm Password"
+            required
           />
           <div class="login-remmember-container">
             <div class="flex-row">
-              <input type="checkbox" name="remember-me" />
+              <input type="checkbox" name="remember-me" required />
               <span
                 ><nobr>I accept the <a>Privacy Policy</a></nobr></span
               >
@@ -39,14 +45,15 @@
           </div>
           <div class="flex-row gap-32 f-wrap">
             <button
+              type="submit"
               class="button-black"
-              onclick="showMessage('You signed up successfully')"
+              onclick="checkPasswordConfirm()"
             >
               Sign Up
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
     <div class="login-footer">
       <a href="templates/privacyPolicy.html" target="_blank">Privacy Policy</a>

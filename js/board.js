@@ -10,11 +10,11 @@ let colId = {
 let btnLeft = "<div></div>";
 let btnRight = "";
 
-function init() {
-  loadTodos();
-  updateHTML();
-  load();
-}
+// function init() {
+//   loadTodos();
+//   updateHTML();
+//   load();
+// }
 
 /**
  * preload all todos for the board

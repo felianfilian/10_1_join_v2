@@ -20,7 +20,8 @@ let todos = [
  */
 function indexLoad() {
   setTimeout(() => {
-    loadHTML("index-content", "./templates/login.html");
+    //loadHTML("index-content", "./templates/login.html");
+    mainLoad("index-content", "./templates/login.html");
   }, 1300);
 }
 
@@ -32,6 +33,18 @@ function mainLoad(target, page) {
   <div w3-include-html="${page}"></div>
   `;
   includeHTML();
+}
+
+/**
+ * load users from the remote storage
+ * save them to the users array
+ */
+async function loadUsers() {
+  try {
+    users = JSON.parse(await getItem("users"));
+  } catch (e) {
+    console.error("Error loading users: ", e);
+  }
 }
 
 /**
@@ -85,12 +98,51 @@ function generateInitials(name) {
 }
 
 /**
- * Sign Up
+ * login logic
  */
-function singUp() {
+function login() {
+  let loginEmail = document.getElementById("signup-email").value;
+  let loginPassword = document.getElementById("signup-password").value;
+  alert(`LOGIN: ${loginEmail} ${loginPassword}`);
+}
+
+/**
+ * Sign Up and save data to remoteStorage
+ */
+function signUp() {
   let signupName = document.getElementById("signup-name").value;
   let signupEmail = document.getElementById("signup-email").value;
   let signupPassword = document.getElementById("signup-password").value;
+
+  let user = {
+    name: signupName,
+    email: signupEmail,
+    password: signupPassword,
+    color: generateRandomColor(),
+  };
+
+  users.push(user);
+
+  console.log(users);
+  showMessage("You signed up successfully");
+}
+
+/**
+ * check if entered password is the same
+ * @returns true or false
+ */
+function checkPasswordConfirm() {
+  let password = document.getElementById("signup-password").value;
+  let passwordConfirm = document.getElementById(
+    "signup-password-confirm"
+  ).value;
+  if (password != passwordConfirm) {
+    alert("not the same password");
+    passwordConfirm = document.getElementById("signup-password-confirm").value =
+      "";
+    return false;
+  }
+  return true;
 }
 
 /**
@@ -102,4 +154,29 @@ function showMessage(message) {
   setTimeout(() => {
     document.getElementById("message-box").classList.add("d-none");
   }, 2000);
+}
+
+/**
+ * generate random color
+ * @returns color code
+ */
+function generateRandomColor() {
+  // Adjust this value to control darkness
+  const min = 50;
+  // Adjust this value to control lightness
+  const max = 200;
+  const red = Math.floor(Math.random() * (max - min + 1)) + min;
+  const green = Math.floor(Math.random() * (max - min + 1)) + min;
+  const blue = Math.floor(Math.random() * (max - min + 1)) + min;
+  return `rgb(${red}, ${green}, ${blue})`;
+}
+
+/**
+ * show users for debug
+ */
+function showUserStorage() {
+  console.log(users);
+  users.forEach((user) => {
+    console.log(user);
+  });
 }

@@ -1,6 +1,8 @@
 /* basic colors
 light blue = #29abe2
 dark-grey = #2A3647
+light-grey = #A8A8A8
+lighter-grey = #f0f0f0
 */
 
 /* basic font */
@@ -47,6 +49,11 @@ body {
 
 a {
   text-decoration: none;
+  color: #a8a8a8;
+}
+
+a:hover {
+  color: #29abe2;
 }
 
 button {
@@ -80,7 +87,7 @@ p {
 }
 
 input {
-  padding: 12px;
+  padding: 8px 12px;
   width: 80%;
   max-width: 300px;
 
@@ -281,13 +288,33 @@ input:focus {
 }
 
 @media (max-width: 768px) {
-  .main-logo-fixed {
+  .main-logo-fixed,
+  .main-logo-animated {
     position: absolute;
 
     left: 50px;
     top: 30px;
     width: 70px;
     height: 84px;
+  }
+
+  @keyframes logo-start {
+    0% {
+      left: calc(100vw - 50% - 101px);
+      top: calc(100vh - 50% - 122px);
+      width: 202px;
+      height: 244px;
+    }
+    100% {
+      left: 50px;
+      top: 30px;
+      width: 70px;
+      height: 84px;
+    }
+  }
+
+  .txt-no-user {
+    display: none;
   }
 }
 
