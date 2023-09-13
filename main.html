@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modules.css" />
   </head>
-  <body onload="mainLoad('main-content', './templates/summary.html')">
+  <body onload="mainLoad('main-content', './templates/summary.html'); mainInit();">
+    <!-- NAVBAR -->
     <nav class="navbar">
       <img class="navbar-logo" src="./img/logo_light.svg" alt="JOIN" />
       <div class="navbar-container">
@@ -67,20 +68,21 @@
     </nav>
 
     <div class="content-area">
+      <!-- HEADER -->
       <div class="header">
         <div class="header-left">
           <div class="header-title">Kanban Project Managemant Tool</div>
           <img class="header-logo" src="./img/logo.svg" alt="" />
         </div>
-      
         <div class="header-user-info">
-          <a class="btn-header-info" href="./join_info.html">
+          <a class="btn-header-info" 
+          onclick="mainLoad('main-content', './templates/joinInfo.html')">
             <img src="./icons/help_default.svg" alt="" />
           </a>
           <div class="header-avatar" style="background-color: #fcba03">
             <div id="avatar-menu" class="d-none">
-              <a href="./legalNotice.html">Legal Notice</a>
-              <a href="./privacyPolicy.html">Privacy Policy</a>
+              <a onclick="mainLoad('main-content', './templates/legalNotice.html')">Legal Notice</a>
+              <a onclick="mainLoad('main-content', './templates/privacyPolicy.html')">Privacy Policy</a>
               <a href="./index.html">Logout</a>
             </div>
             <div id="avatar-initials" onclick="toggleAvatarMenu()">__</div>
@@ -88,10 +90,10 @@
         </div>
       </div>
       
+      <!-- CONTENT -->
       <div id="main-content">
         <div w3-include-html="./templates/summary.html"></div>
-
-         </div>
+      </div>
 
     </div>
 

@@ -14,21 +14,28 @@
       <h1>Log In</h1>
       <div class="blue-hor-divider"></div>
     </div>
-    <input type="text" placeholder="Email" />
-    <input type="password" placeholder="Password" />
-    <div class="login-remmember-container">
-      <div class="flex-row">
-        <input type="checkbox" name="remember-me" />
-        <span><nobr>Remember me</nobr></span>
+    <form class="form-inputs" onsubmit="login(); return false;">
+      <input type="text" id="login-email" placeholder="Email" required />
+      <input
+        type="password"
+        id="login-password"
+        placeholder="Password"
+        required
+      />
+      <div class="login-remmember-container">
+        <div class="flex-row">
+          <input type="checkbox" name="remember-me" />
+          <span><nobr>Remember me</nobr></span>
+        </div>
+        <div>
+          <a href="#">I Forgot my password</a>
+        </div>
       </div>
-      <div>
-        <a href="#">I Forgot my password</a>
+      <div class="flex-row gap-32 f-wrap">
+        <button class="button-black">Login</button>
+        <button onclick="loginGuest()">Guest Login</button>
       </div>
-    </div>
-    <div class="flex-row gap-32 f-wrap">
-      <button class="button-black">Login</button>
-      <button onclick="window.location.href = 'main.html'">Guest Login</button>
-    </div>
+    </form>
   </div>
 </div>
 <div class="login-footer">

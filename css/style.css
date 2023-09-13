@@ -177,14 +177,29 @@ input:focus {
   align-items: center;
   gap: 16px;
 
-  width: 50%;
+  width: auto;
   max-width: 500px;
 
-  padding: 32px;
+  padding: 32px 64px;
 
   background-color: #fff;
-  border-radius: 16px;
+  border-radius: 32px;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+}
+
+.form-inputs {
+  box-sizing: border-box;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+
+  padding: 16px;
 }
 
 .blue-hor-divider {

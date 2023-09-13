@@ -12,14 +12,11 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/modules.css" />
   </head>
-  <body>
+  <body onload="loadServerData()">
     <img class="main-logo-fixed" src="../img/logo.svg" alt="JOIN" />
     <div id="index-content">
-      <form
-        class="signup-container"
-        onsubmit="signUp(); checkPasswordConfirm(); return false;"
-      >
-        <div class="main-card">
+      <div class="login-container">
+        <form onsubmit="signUp(); return false;" class="main-card">
           <div>
             <h1>Sign Up</h1>
             <div class="blue-hor-divider"></div>
@@ -28,13 +25,13 @@
           <input type="email" id="signup-email" placeholder="Email" required />
           <input
             type="password"
-            id="password"
+            id="signup-password"
             placeholder="Password"
             required
           />
           <input
             type="password"
-            id="password-confirm"
+            id="signup-password-confirm"
             placeholder="Confirm Password"
             required
           />
@@ -49,9 +46,10 @@
           <div class="flex-row gap-32 f-wrap">
             <button type="submit" class="button-black">Sign Up</button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
+
     <div class="login-footer">
       <a href="templates/privacyPolicy.html" target="_blank">Privacy Policy</a>
       <a href="templates/privacyPolicy.html" target="_blank">Legal Notice</a>

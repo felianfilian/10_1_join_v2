@@ -2,7 +2,7 @@ let users = [
   {
     name: "super mario",
     email: "super@mario.toad",
-    password: "123456",
+    password: "1234",
     color: "#32a852",
   },
 ];
@@ -21,7 +21,13 @@ let todos = [
     title: "CSS Design",
   },
 ];
-let contacts = [];
+let contacts = [
+  {
+    name: "peter pan",
+    email: "peter@pan.test",
+    phone: "123456789",
+  },
+];
 
 const monthsName = [
   null,
@@ -39,20 +45,39 @@ const monthsName = [
   "Dezember",
 ];
 
+// waiting time to show message and change page
+let messageDelay = 2200;
+
+let userName = "";
+let userColor = "";
+let userIndex = localStorage.getItem("activeID");
+
 /**
  * main inital load
  */
-function init() {
-  loadFromServer("users");
-  loadFromServer("todos");
-  loadFromServer("contacts");
+function mainInit() {
+  loadServerData();
+
+  getUserData();
+  updateHeader();
+  document.addEventListener("click", closeAvatarMenuOutside);
 }
 
 /**
  * initial load of index html
  */
 function indexLoad() {
+  loadServerData();
   mainLoad("index-content", "./templates/login.html", 1300);
+}
+
+/**
+ * get data from the remote storage
+ */
+async function loadServerData() {
+  users = JSON.parse(await getItem("users"));
+  //todos = JSON.parse(await getItem("todos"));
+  //contacts = JSON.parse(await getItem("contacts"));
 }
 
 /**
@@ -82,15 +107,34 @@ function loadFullPage(page, time = 0) {
 }
 
 /**
- * load data from the remote storage
- * save them to a local array
+ * get user data from the server
+ * setup guest user if needed
  */
-async function loadFromServer(dataName) {
-  try {
-    users = JSON.parse(await getItem(dataName));
-  } catch (e) {
-    console.error(`Error loading : ${dataName} - e`);
+function getUserData() {
+  if (userIndex == -1 || userIndex == null) {
+    userName = "Guest";
+    userColor = "#29abe2";
+  } else {
+    if (users[userIndex].hasOwnProperty("names")) {
+      userName = users[userIndex].names;
+    } else {
+      userName = "Mr Nobody";
+    }
+    if (users[userIndex].hasOwnProperty("color")) {
+      userColor = users[userIndex].color;
+    } else {
+      userColor = "#22ab5b";
+    }
   }
+}
+
+/**
+ * show actual user in the header
+ */
+function updateHeader() {
+  let initials = generateInitials(userName);
+  document.getElementById("avatar-initials").innerHTML = initials;
+  document.querySelector(".header-avatar").style.backgroundColor = userColor;
 }
 
 /**
@@ -101,6 +145,18 @@ function toggleAvatarMenu() {
     document.getElementById("avatar-menu").classList.remove("d-none");
   } else {
     document.getElementById("avatar-menu").classList.add("d-none");
+  }
+}
+
+/**
+ * close the header menu by clicking outside the menu
+ */
+function closeAvatarMenuOutside(event) {
+  const avatarMenu = document.getElementById("avatar-menu");
+  const avatarInitials = document.getElementById("avatar-initials");
+
+  if (!avatarMenu.contains(event.target) && event.target !== avatarInitials) {
+    avatarMenu.classList.add("d-none");
   }
 }
 
@@ -129,9 +185,27 @@ function generateInitials(name) {
  * login logic
  */
 function login() {
-  let loginEmail = document.getElementById("signup-email").value;
-  let loginPassword = document.getElementById("signup-password").value;
-  alert(`LOGIN: ${loginEmail} ${loginPassword}`);
+  let loginEmail = document.getElementById("login-email").value;
+  let loginPassword = document.getElementById("login-password").value;
+  if (
+    users.find(
+      (user) => user.email == loginEmail && user.password == loginPassword
+    )
+  ) {
+    showMessage(`Welcome ${loginEmail}`);
+  } else {
+    showMessage(`User not Found`, "#FF3D00");
+  }
+}
+
+/**
+ * login for guest users
+ */
+function loginGuest() {
+  event.preventDefault();
+  showMessage("Logged in as Guest");
+  localStorage.setItem("activeID", -1);
+  loadFullPage("./main.html", messageDelay);
 }
 
 /**
@@ -141,32 +215,37 @@ async function signUp() {
   let signupName = document.getElementById("signup-name").value;
   let signupEmail = document.getElementById("signup-email").value;
   let signupPassword = document.getElementById("signup-password").value;
+  let signupPasswordConfirm = document.getElementById(
+    "signup-password-confirm"
+  ).value;
 
-  let user = {
-    name: signupName,
-    email: signupEmail,
-    password: signupPassword,
-    color: generateRandomColor(),
-  };
+  if (
+    users.find((user) => user.name == signupName || user.email == signupEmail)
+  ) {
+    showMessage("User already exist", "#FF3D00");
+  } else {
+    if (checkPasswordConfirm(signupPassword, signupPasswordConfirm)) {
+      let user = {
+        name: signupName,
+        email: signupEmail,
+        password: signupPassword,
+        color: generateRandomColor(),
+      };
+      users.push(user);
 
-  users.push(user);
-
-  // debug
-  console.log(users);
-
-  //await setItem("users", JSON.stringify(users));
-  showMessage("You signed up successfully");
-  loadFullPage("../index.html", 2200);
+      await setItem("users", JSON.stringify(users));
+      showMessage("You signed up successfully");
+      loadFullPage("../index.html", messageDelay);
+    }
+  }
 }
 
 /**
  * check if entered password is the same
  * @returns true or false
  */
-function checkPasswordConfirm() {
-  let password = document.getElementById("password").value;
-  let passwordConfirm = document.getElementById("password-confirm").value;
-  if (password != passwordConfirm) {
+function checkPasswordConfirm(pass01, pass02) {
+  if (pass01 != pass02) {
     showMessage("Not the same password", "#FF3D00");
     passwordConfirm = document.getElementById("signup-password-confirm").value =
       "";
@@ -180,7 +259,7 @@ function checkPasswordConfirm() {
  */
 function sendPasswordRequest() {
   showMessage("An E-Mail has been send to you");
-  loadFullPage("../index.html", 2500);
+  loadFullPage("../index.html", messageDelay);
 }
 
 /**
@@ -188,7 +267,7 @@ function sendPasswordRequest() {
  */
 function resetPassword(userId) {
   showMessage("You reset your Password");
-  loadFullPage("../index.html", 2500);
+  loadFullPage("../index.html", messageDelay);
 }
 
 /**
@@ -200,7 +279,7 @@ function showMessage(message, bgColor = "#2a3647") {
   document.getElementById("message-box").classList.remove("d-none");
   setTimeout(() => {
     document.getElementById("message-box").classList.add("d-none");
-  }, 2200);
+  }, messageDelay);
 }
 
 /**

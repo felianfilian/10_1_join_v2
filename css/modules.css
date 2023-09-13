@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: center;
 
-  width: auto;
+  width: 100vw;
   height: 100vh;
 
   padding: 32px;
@@ -83,22 +83,6 @@
 
     justify-content: center;
   }
-}
-
-/* ---------------------------------------------------- */
-/* signup page */
-
-.signup-container {
-  box-sizing: border-box;
-  overflow: hidden;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-
-  padding: 16px;
 }
 
 /* ---------------------------------------------------- */
