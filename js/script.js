@@ -1,4 +1,11 @@
-let users = [];
+let users = [
+  {
+    name: "super mario",
+    email: "super@mario.toad",
+    password: "123456",
+    color: "#32a852",
+  },
+];
 let todos = [
   {
     assignedContact: ["Jessica J. Rooker"],
@@ -14,43 +21,75 @@ let todos = [
     title: "CSS Design",
   },
 ];
+let contacts = [];
+
+const monthsName = [
+  null,
+  "Januar",
+  "Februar",
+  "März",
+  "April",
+  "Mai",
+  "Juni",
+  "Juli",
+  "August",
+  "September",
+  "Oktober",
+  "November",
+  "Dezember",
+];
 
 /**
  * main inital load
  */
 function init() {
-  loadUsers();
+  loadFromServer("users");
+  loadFromServer("todos");
+  loadFromServer("contacts");
 }
 
 /**
  * initial load of index html
  */
 function indexLoad() {
-  setTimeout(() => {
-    //loadHTML("index-content", "./templates/login.html");
-    mainLoad("index-content", "./templates/login.html");
-  }, 1300);
+  mainLoad("index-content", "./templates/login.html", 1300);
 }
 
 /**
- * load of main content
+ * load of inline page content
+ * @param target elent of the page
+ * @param page url of the content
+ * @param time delay time
  */
-function mainLoad(target, page) {
-  document.getElementById(target).innerHTML = `
+function mainLoad(target, page, time = 0) {
+  setTimeout(() => {
+    document.getElementById(target).innerHTML = `
   <div w3-include-html="${page}"></div>
   `;
-  includeHTML();
+    includeHTML();
+  }, time);
 }
 
 /**
- * load users from the remote storage
- * save them to the users array
+ * load a complete page
+ * @param page url of the page
+ * @param time delay time
  */
-async function loadUsers() {
+function loadFullPage(page, time = 0) {
+  setTimeout(() => {
+    window.location.href = page;
+  }, time);
+}
+
+/**
+ * load data from the remote storage
+ * save them to a local array
+ */
+async function loadFromServer(dataName) {
   try {
-    users = JSON.parse(await getItem("users"));
+    users = JSON.parse(await getItem(dataName));
   } catch (e) {
-    console.error("Error loading users: ", e);
+    console.error(`Error loading : ${dataName} - e`);
   }
 }
 
@@ -63,24 +102,6 @@ function toggleAvatarMenu() {
   } else {
     document.getElementById("avatar-menu").classList.add("d-none");
   }
-}
-
-/**
- * Loading HTML Pages
- */
-function loadHTML(divElement, htmlPath) {
-  const targetElement = document.getElementById(divElement);
-  // Fetch the content from another HTML file.
-  fetch(htmlPath)
-    .then((response) => response.text())
-    .then((html) => {
-      // Insert the fetched HTML content into the target element.
-      targetElement.innerHTML = html;
-    })
-    .catch((error) => {
-      console.error("Error fetching content:", error);
-      targetElement.innerHTML = "Page not available";
-    });
 }
 
 /**
@@ -130,9 +151,12 @@ async function signUp() {
 
   users.push(user);
 
+  // debug
   console.log(users);
-  await setItem("users", JSON.stringify(users));
+
+  //await setItem("users", JSON.stringify(users));
   showMessage("You signed up successfully");
+  loadFullPage("../index.html", 2200);
 }
 
 /**
@@ -140,10 +164,8 @@ async function signUp() {
  * @returns true or false
  */
 function checkPasswordConfirm() {
-  let password = document.getElementById("signup-password").value;
-  let passwordConfirm = document.getElementById(
-    "signup-password-confirm"
-  ).value;
+  let password = document.getElementById("password").value;
+  let passwordConfirm = document.getElementById("password-confirm").value;
   if (password != passwordConfirm) {
     showMessage("Not the same password", "#FF3D00");
     passwordConfirm = document.getElementById("signup-password-confirm").value =
@@ -151,6 +173,22 @@ function checkPasswordConfirm() {
     return false;
   }
   return true;
+}
+
+/**
+ * send email for password reset
+ */
+function sendPasswordRequest() {
+  showMessage("An E-Mail has been send to you");
+  loadFullPage("../index.html", 2500);
+}
+
+/**
+ * change the password of the user
+ */
+function resetPassword(userId) {
+  showMessage("You reset your Password");
+  loadFullPage("../index.html", 2500);
 }
 
 /**
