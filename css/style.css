@@ -88,10 +88,11 @@ p {
   margin-block-end: 0;
 }
 
-input {
+input,
+textarea {
+  box-sizing: border-box;
   padding: 8px 12px;
-  width: 80%;
-  max-width: 300px;
+  width: 100%;
 
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -144,6 +145,16 @@ input:focus {
   background-color: #29abe2;
   color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-icon-small {
+  width: 12px;
+  height: 12px;
 }
 
 .flex-row {

@@ -305,3 +305,12 @@ function showUserStorage() {
     console.log(user);
   });
 }
+
+function toggleOnOff(id) {
+  let element = document.getElementById(id);
+  if (element.classList.contains("d-none")) {
+    element.classList.remove("d-none");
+  } else {
+    element.classList.add("d-none");
+  }
+}
