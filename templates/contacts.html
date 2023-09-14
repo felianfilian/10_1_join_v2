@@ -1,6 +1,6 @@
 <div class="container contacts-container">
   <div id="contact-list" class="contact-list">
-    <button class="button-grey">
+    <button class="button-grey" onclick="toggleOnOff('addContact-overlay')">
       Add new contact
       <img src="./icons/icon_person_white.svg" alt="" />
     </button>
@@ -29,5 +29,17 @@
       <h1 class="sum-title">Contacts</h1>
       <p class="fs-24">Better with a team</p>
     </div>
+  </div>
+</div>
+
+<div id="addContact-overlay" class="overlay-background d-none">
+  <div class="overlay-card">
+    <div
+      class="btn-icon btn-overlay-close"
+      onclick="toggleOnOff('addContact-overlay')"
+    >
+      <img src="./icons/cross.svg" alt="X" />
+    </div>
+    <div w3-include-html="./templates/addTask.html"></div>
   </div>
 </div>

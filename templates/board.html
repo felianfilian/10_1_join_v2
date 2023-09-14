@@ -12,7 +12,10 @@
           />
           <img class="btn-search" src="./icons/icon_search.svg" alt="" />
         </div>
-        <button onclick="alert('new task')" class="button button-black">
+        <button
+          onclick="toggleOnOff('addTask-overlay')"
+          class="button button-black"
+        >
           Add Task +
         </button>
       </div>
@@ -95,5 +98,17 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="addTask-overlay" class="overlay-background d-none">
+  <div class="overlay-card">
+    <div
+      class="btn-icon btn-overlay-close"
+      onclick="toggleOnOff('addTask-overlay')"
+    >
+      <img src="./icons/cross.svg" alt="X" />
+    </div>
+    <div w3-include-html="./templates/addTask.html"></div>
   </div>
 </div>
