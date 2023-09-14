@@ -2,18 +2,18 @@
   <h1>Add Task</h1>
   <div class="addTask-container">
     <div class="addTask-inputs">
-      <label for="task-title">Title</label>
-      <input type="text" name="task-title" placeholder="Title" />
-      <label for="task-desription">Desription</label>
+      <span>Title</span>
+      <input type="text" name="task-title" id="task-title" placeholder="Title" />
+      <span>Desription</span>
       <textarea
-        name="task-desription"
-        id="task-desription"
+        name="task-description"
+        id="task-description"
         cols="30"
         rows="5"
         placeholder="Description"
         required
       ></textarea>
-      <label for="task-assigned">Assigned to</label>
+      <span>Assigned to</span>
       <div class="dropdown-menu">
         <div class="dropdown-label" onclick="toggleOnOff('contact-options')">
           Select Contacts to assign
@@ -37,18 +37,23 @@
     <div class="addTask-border"></div>
 
     <div class="addTask-inputs">
-      <label for="task-date">Due date</label>
-      <input type="text" name="task-date" placeholder="Title" />
-      <p>Prio</p>
-      <label for="task-category">Category</label>
-      <input type="text" name="task-category" placeholder="Description" />
-      <label for="task-subtask">Subtask</label>
-      <input type="text" name="task-subtask" placeholder="Description" />
+      <span>Due date</span>
+      <input id="task-date" type="text" name="task-date" placeholder="Title" />
+      <span>Prio</span>
+      <div id="task-prio">
+        <button id="prio01" class="prio-option" onclick="selectPrio('urgent')">Urgent</button>
+        <button id="prio02" class="prio-option" onclick="selectPrio('medium')">Medium</button>
+        <button id="prio03" class="prio-option" onclick="selectPrio('low')">Low</button>
+      </div>
+      <span>Category</span>
+      <input type="text" id="task-category" name="task-category" placeholder="Category" />
+      <span>Subtask</span>
+      <input type="text" id="task-subtasks" name="task-subtask" placeholder="Subtasks" />
     </div>
   </div>
 
   <div class="addTask-buttons">
-    <button onclick="alert('clear')">Clear</button>
+    <button onclick="clearForm()">Clear</button>
     <button onclick="alert('add task')" class="button-black">
       Create Task<img
         class="btn-img-black"

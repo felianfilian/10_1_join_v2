@@ -33,13 +33,18 @@
 </div>
 
 <div id="addContact-overlay" class="overlay-background d-none">
-  <div class="overlay-card">
-    <div
-      class="btn-icon btn-overlay-close"
-      onclick="toggleOnOff('addContact-overlay')"
-    >
-      <img src="./icons/cross.svg" alt="X" />
+  <div class="overlay-addcontact-card">
+    <div class="overlay-addcontact-header">Tasks are Better with a Team!</div>
+    <div class="overlay-addcontact-inputs">
+      <div
+        class="btn-icon btn-overlay-close"
+        onclick="toggleOnOff('addContact-overlay')"
+      >
+        <img src="./icons/cross.svg" alt="X" />
+      </div>
+      <input type="name" placeholder="Name" />
+      <!-- <div w3-include-html="./templates/addTask.html">
+    </div> -->
     </div>
-    <div w3-include-html="./templates/addTask.html"></div>
   </div>
 </div>

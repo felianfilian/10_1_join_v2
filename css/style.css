@@ -5,6 +5,8 @@ grey-02 = #D1D1D1
 grey-03 = #A8A8A8
 grey-04 (light) = #f0f0f0
 red-01 = #FF3D00
+yellow-01 = #FFA800
+green-01 = #7AE229
 */
 
 /* basic font */
@@ -365,8 +367,9 @@ input:focus {
   right: 0;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  gap: 0;
 
   background-color: rgba(0, 0, 0, 0.5);
 
@@ -374,6 +377,8 @@ input:focus {
 }
 
 .overlay-card {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -391,7 +396,58 @@ input:focus {
   z-index: 999;
 }
 
+.overlay-addcontact-card {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+
+  min-height: 300px;
+  width: 70%;
+
+  background-color: #fff;
+  border-radius: 32px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-addcontact-header {
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #2a3647;
+
+  height: 300px;
+  width: 50%;
+
+  border-radius: 32px;
+  color: #fff;
+}
+
+.overlay-addcontact-inputs {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+
+  height: 300px;
+  width: 50%;
+
+  padding: 16px;
+
+  background-color: #fff;
+  border-radius: 32px;
+  color: #fff;
+}
+
 .btn-overlay-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
   display: flex;
   justify-content: flex-end;
 

@@ -596,6 +596,23 @@
   border-radius: 50%;
 }
 
+#task-prio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prio-option {
+  box-sizing: border-box;
+
+  width: 32%;
+
+  border: unset;
+}
+
+.prio-option:hover {
+  border: unset;
+}
+
 @media (max-width: 992px) {
   .addTask-container {
     flex-direction: column;
