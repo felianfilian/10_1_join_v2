@@ -21,13 +21,7 @@ let todos = [
     title: "CSS Design",
   },
 ];
-let contacts = [
-  {
-    name: "peter pan",
-    email: "peter@pan.test",
-    phone: "123456789",
-  },
-];
+let contacts = [];
 
 const monthsName = [
   null,
