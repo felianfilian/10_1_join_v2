@@ -300,6 +300,10 @@ function showUserStorage() {
   });
 }
 
+/**
+ * turn the display style on or off
+ * @param id id selector of the element
+ */
 function toggleOnOff(id) {
   let element = document.getElementById(id);
   if (element.classList.contains("d-none")) {
