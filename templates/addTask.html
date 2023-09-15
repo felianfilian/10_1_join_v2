@@ -1,9 +1,9 @@
-<div class="container">
+<form class="container" onsubmit="addTask(); return false;">
   <h1>Add Task</h1>
   <div class="addTask-container">
     <div class="addTask-inputs">
       <span>Title</span>
-      <input type="text" name="task-title" id="task-title" placeholder="Title" />
+      <input type="text" name="task-title" id="task-title" placeholder="Title" required/>
       <span>Desription</span>
       <textarea
         name="task-description"
@@ -38,27 +38,28 @@
 
     <div class="addTask-inputs">
       <span>Due date</span>
-      <input id="task-date" type="text" name="task-date" placeholder="Title" />
+      <input id="task-date" type="text" name="task-date" placeholder="Title" required/>
       <span>Prio</span>
       <div id="task-prio">
-        <button id="prio01" class="prio-option" onclick="selectPrio('urgent')">Urgent</button>
-        <button id="prio02" class="prio-option" onclick="selectPrio('medium')">Medium</button>
-        <button id="prio03" class="prio-option" onclick="selectPrio('low')">Low</button>
+         <button id="prio01" type="button" class="prio-option" onclick="selectPrio('urgent'); return false;">Urgent</button>
+        <button id="prio02" type="button" class="prio-option" onclick="selectPrio('medium'); return false;">Medium</button>
+        <button id="prio03" type="button" class="prio-option" onclick="selectPrio('low'); return false;">Low</button>
       </div>
+
       <span>Category</span>
-      <input type="text" id="task-category" name="task-category" placeholder="Category" />
+      <input type="text" id="task-category" name="task-category" placeholder="Category" required/>
       <span>Subtask</span>
       <input type="text" id="task-subtasks" name="task-subtask" placeholder="Subtasks" />
     </div>
   </div>
 
   <div class="addTask-buttons">
-    <button onclick="clearForm()">Clear</button>
-    <button onclick="alert('add task')" class="button-black">
+    <button onclick="clearForm(); return false;">Clear</button>
+    <button class="button-black">
       Create Task<img
         class="btn-img-black"
         src="./icons/icon_check_white.svg"
       ></img>
     </button>
   </div>
-</div>
+</form>

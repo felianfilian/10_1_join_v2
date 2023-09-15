@@ -1,15 +1,17 @@
 let task = {
   title: "",
   description: "",
-  taskAssigned: [],
+  assignedcontacts: [{ name: "peter" }],
   date: "",
   prio: "",
   category: "",
-  subtasks: [],
+  subtasks: [{ title: "update page" }],
 };
 
-assignedContacts = [];
-selectedPrio = "urgent";
+let contacts = [];
+
+selectedPrio = "";
+colId = 1;
 
 /**
  * clear all form elements
@@ -18,12 +20,14 @@ function clearForm() {
   getElements();
   task.title.value = "";
   task.description.value = "";
+  task.assignedContacts = [];
   task.date.value = "";
-  task.category.value = "";
-  task.subtasks.value = [];
   resetPrioColors();
+  selectedPrio = "";
   task.prio = "";
-  showMessage("Form cleared");
+  task.category.value = "";
+  task.subtasks = [];
+  showMessage("Form cleared !");
 }
 
 /**
@@ -32,28 +36,58 @@ function clearForm() {
 function getElements() {
   task.title = document.getElementById("task-title");
   task.description = document.getElementById("task-description");
-  task.taskAssigned = assignedContacts;
   task.date = document.getElementById("task-date");
   task.prio = selectedPrio;
   task.category = document.getElementById("task-category");
-  task.subtasks = document.getElementById("task-subtasks");
 }
 
 function addTaskValidation() {
-  alert("validate inputs");
+  if (task.prio == "") {
+    showMessage("Set Prio please", "#FF3D00");
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function setColID(id) {
+  colId = id;
 }
 
 /**
  * add a task to a specific column
  * @param colId id of the board column
  */
-function addTask(colId) {
-  addTaskValidation();
-  alert(colId);
+function addTask() {
+  getElements();
+  if (addTaskValidation()) {
+    alert(
+      "title: " +
+        task.title.value +
+        "\n" +
+        "description: " +
+        task.description.value +
+        "\n" +
+        "assigned to: " +
+        task.assignedcontacts +
+        "\n" +
+        "date: " +
+        task.date.value +
+        "\n" +
+        "prio: " +
+        task.prio +
+        "\n" +
+        "category: " +
+        task.category.value +
+        "\n" +
+        "subtasks: " +
+        task.subtasks
+    );
+  }
 }
 
 function selectPrio(prioId) {
-  task.prio = prioId;
+  selectedPrio = prioId;
   resetPrioColors();
   if (prioId == "urgent") {
     document.getElementById("prio01").style.backgroundColor = "#FF3D00";

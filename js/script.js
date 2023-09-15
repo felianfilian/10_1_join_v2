@@ -21,7 +21,7 @@ let todos = [
     title: "CSS Design",
   },
 ];
-let contacts = [];
+let categories = [];
 
 const monthsName = [
   null,
@@ -74,8 +74,9 @@ function indexLoad() {
 async function loadServerData() {
   userIndex = localStorage.getItem("activeID");
   users = JSON.parse(await getItem("users"));
-  //todos = JSON.parse(await getItem("todos"));
-  //contacts = JSON.parse(await getItem("contacts"));
+  contacts = JSON.parse(await getItem("contacts"));
+  todos = JSON.parse(await getItem("todos"));
+  categories = JSON.parse(await getItem("categories"));
 }
 
 /**
@@ -113,15 +114,17 @@ function getUserData() {
     userName = "Guest";
     userColor = "#29abe2";
   } else {
-    if (users[userIndex].hasOwnProperty("name")) {
-      userName = users[userIndex].name;
-    } else {
-      userName = "Mr Nobody";
-    }
-    if (users[userIndex].hasOwnProperty("color")) {
-      userColor = users[userIndex].color;
-    } else {
-      userColor = "#22ab5b";
+    if (users.length > 0) {
+      if (users[userIndex].hasOwnProperty("name")) {
+        userName = users[userIndex].name;
+      } else {
+        userName = "Mr Nobody";
+      }
+      if (users[userIndex].hasOwnProperty("color")) {
+        userColor = users[userIndex].color;
+      } else {
+        userColor = "#22ab5b";
+      }
     }
   }
 }
@@ -158,6 +161,7 @@ function generateInitials(name) {
 
 /**
  * login logic
+ * set user id in local storage
  */
 function login() {
   let loginEmail = document.getElementById("login-email").value;
@@ -167,8 +171,8 @@ function login() {
       (user) => user.email == loginEmail && user.password == loginPassword
     )
   ) {
-    showMessage(`Welcome ${loginEmail}`);
     let userId = users.findIndex((user) => user.email == loginEmail);
+    showMessage(`Welcome ${users[userId]["name"]}`);
     localStorage.setItem("activeID", userId);
     loadFullPage("./main.html", messageDelay);
   } else {
@@ -290,7 +294,6 @@ function showUserStorage() {
  */
 function toggleOnOff(id) {
   let element = document.getElementById(id);
-  console.log(element.classList.contains("d-none"));
   if (element.classList.contains("d-none")) {
     element.classList.remove("d-none");
   } else {
@@ -308,4 +311,21 @@ function closeAvatarMenuOutside(event) {
   if (!avatarHeader.contains(event.target)) {
     avatarMenu.classList.add("d-none");
   }
+}
+
+function resetServerData() {
+  categories = [
+    {
+      name: "User Story",
+      color: "#0038FF",
+    },
+    {
+      name: "Technical Task",
+      color: "#1FD7C1",
+    },
+  ];
+  setItem("users", []);
+  setItem("todos", []);
+  setItem("contacts", []);
+  setItem("categories", categories);
 }

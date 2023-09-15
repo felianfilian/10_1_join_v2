@@ -10,19 +10,12 @@ let colId = {
 let btnLeft = "<div></div>";
 let btnRight = "";
 
-// function init() {
-//   loadTodos();
-//   updateHTML();
-//   load();
-// }
-
 /**
  * preload all todos for the board
  */
 async function loadTodos() {
   try {
-    let newTodos = await getItem("allTasks");
-    todos = JSON.parse(newTodos);
+    todos = JSON.parse(await getItem("allTasks"));
     for (let i = 0; i < todos.length; i++) {
       todos[i].id = i;
     }
@@ -30,7 +23,9 @@ async function loadTodos() {
     console.log("no data found on server");
   }
 
-  updateHTML();
+  setTimeout(() => {
+    updateHTML();
+  }, 200);
 }
 
 /**

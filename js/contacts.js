@@ -7,13 +7,9 @@ contacts = [
 ];
 
 async function contactsInit() {
-  try {
-    let contacts = await getItem("contacts");
-    contacts = JSON.parse(newTodos);
-  } catch {
-    console.log("no data found on server");
-  }
-  generateContactList();
+  setTimeout(() => {
+    generateContactList();
+  }, 200);
 }
 
 function generateContactList() {
