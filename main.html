@@ -80,12 +80,13 @@
             <img src="./icons/help_default.svg" alt="" />
           </a>
           <div class="header-avatar" style="background-color: #fcba03">
+            <div id="avatar-initials" onclick="toggleOnOff('avatar-menu')">__</div>
             <div id="avatar-menu" class="d-none">
               <a onclick="mainLoad('main-content', './templates/legalNotice.html')">Legal Notice</a>
               <a onclick="mainLoad('main-content', './templates/privacyPolicy.html')">Privacy Policy</a>
               <a href="./index.html">Logout</a>
             </div>
-            <div id="avatar-initials" onclick="toggleAvatarMenu()">__</div>
+            
           </div>
         </div>
       </div>

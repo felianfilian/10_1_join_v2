@@ -132,29 +132,6 @@ function updateHeader() {
 }
 
 /**
- * show and hide the header menu
- */
-function toggleAvatarMenu() {
-  if (document.getElementById("avatar-menu").classList.contains("d-none")) {
-    document.getElementById("avatar-menu").classList.remove("d-none");
-  } else {
-    document.getElementById("avatar-menu").classList.add("d-none");
-  }
-}
-
-/**
- * close the header menu by clicking outside the menu
- */
-function closeAvatarMenuOutside(event) {
-  const avatarMenu = document.getElementById("avatar-menu");
-  const avatarInitials = document.getElementById("avatar-initials");
-
-  if (!avatarMenu.contains(event.target) && event.target !== avatarInitials) {
-    avatarMenu.classList.add("d-none");
-  }
-}
-
-/**
  * generate 2 characters from the first character of the first and last name
  * @param name full name as string
  * @returns 2 characters as initial string
@@ -306,9 +283,22 @@ function showUserStorage() {
  */
 function toggleOnOff(id) {
   let element = document.getElementById(id);
+  console.log(element.classList.contains("d-none"));
   if (element.classList.contains("d-none")) {
     element.classList.remove("d-none");
   } else {
     element.classList.add("d-none");
+  }
+}
+
+/**
+ * close the header menu by clicking outside the menu
+ */
+function closeAvatarMenuOutside(event) {
+  const avatarMenu = document.getElementById("avatar-menu");
+  const avatarInitials = document.getElementById("avatar-initials");
+
+  if (!avatarMenu.contains(event.target) && event.target !== avatarInitials) {
+    toggleOnOff("avatar-menu");
   }
 }
