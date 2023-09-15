@@ -44,17 +44,20 @@ let messageDelay = 2200;
 
 let userName = "";
 let userColor = "";
-let userIndex = localStorage.getItem("activeID");
+let userIndex = -1;
 
 /**
  * main inital load
  */
-function mainInit() {
-  loadServerData();
+async function mainInit() {
+  mainLoad("main-content", "./templates/summary.html");
 
-  getUserData();
-  updateHeader();
-  document.addEventListener("click", closeAvatarMenuOutside);
+  loadServerData();
+  setTimeout(() => {
+    getUserData();
+    updateHeader();
+    document.addEventListener("click", closeAvatarMenuOutside);
+  }, 200);
 }
 
 /**
@@ -69,6 +72,7 @@ function indexLoad() {
  * get data from the remote storage
  */
 async function loadServerData() {
+  userIndex = localStorage.getItem("activeID");
   users = JSON.parse(await getItem("users"));
   //todos = JSON.parse(await getItem("todos"));
   //contacts = JSON.parse(await getItem("contacts"));
@@ -109,8 +113,8 @@ function getUserData() {
     userName = "Guest";
     userColor = "#29abe2";
   } else {
-    if (users[userIndex].hasOwnProperty("names")) {
-      userName = users[userIndex].names;
+    if (users[userIndex].hasOwnProperty("name")) {
+      userName = users[userIndex].name;
     } else {
       userName = "Mr Nobody";
     }
@@ -164,6 +168,9 @@ function login() {
     )
   ) {
     showMessage(`Welcome ${loginEmail}`);
+    let userId = users.findIndex((user) => user.email == loginEmail);
+    localStorage.setItem("activeID", userId);
+    loadFullPage("./main.html", messageDelay);
   } else {
     showMessage(`User not Found`, "#FF3D00");
   }
@@ -292,13 +299,13 @@ function toggleOnOff(id) {
 }
 
 /**
- * close the header menu by clicking outside the menu
+ * close geader menu on click outside
+ * @param  event
  */
 function closeAvatarMenuOutside(event) {
-  const avatarMenu = document.getElementById("avatar-menu");
-  const avatarInitials = document.getElementById("avatar-initials");
-
-  if (!avatarMenu.contains(event.target) && event.target !== avatarInitials) {
-    toggleOnOff("avatar-menu");
+  let avatarMenu = document.getElementById("avatar-menu");
+  let avatarHeader = document.getElementById("header-avatar");
+  if (!avatarHeader.contains(event.target)) {
+    avatarMenu.classList.add("d-none");
   }
 }

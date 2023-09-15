@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/modules.css" />
   </head>
-  <body onload="mainLoad('main-content', './templates/summary.html'); mainInit();">
+  <body onload="mainInit();">
     <!-- NAVBAR -->
     <nav class="navbar">
       <img class="navbar-logo" src="./img/logo_light.svg" alt="JOIN" />
@@ -79,8 +79,8 @@
           onclick="mainLoad('main-content', './templates/joinInfo.html')">
             <img src="./icons/help_default.svg" alt="" />
           </a>
-          <div class="header-avatar" style="background-color: #fcba03">
-            <div id="avatar-initials" onclick="toggleOnOff('avatar-menu')">__</div>
+          <div id="header-avatar" class="header-avatar" onclick="toggleOnOff('avatar-menu')">
+            <div id="avatar-initials" >__</div>
             <div id="avatar-menu" class="d-none">
               <a onclick="mainLoad('main-content', './templates/legalNotice.html')">Legal Notice</a>
               <a onclick="mainLoad('main-content', './templates/privacyPolicy.html')">Privacy Policy</a>
