@@ -74,7 +74,6 @@ function indexLoad() {
 async function loadServerData() {
   userIndex = localStorage.getItem("activeID");
   users = JSON.parse(await getItem("users"));
-  contacts = JSON.parse(await getItem("contacts"));
   todos = JSON.parse(await getItem("todos"));
   categories = JSON.parse(await getItem("categories"));
 }

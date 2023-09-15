@@ -13,6 +13,23 @@ let contacts = [];
 selectedPrio = "";
 colId = 1;
 
+async function addTaskInit() {
+  contacts = JSON.parse(await getItem("contacts"));
+  setTimeout(() => {
+    generateContactAdd();
+  }, 200);
+}
+
+function generateContactAdd() {
+  document.getElementById("contact-options").innerHTML += `
+  <div class="contact-choice">
+    <div class="contact-avatar">HP</div>
+    <div>Harry Potter</div>
+    <img class="btn-icon" src="./icons/icon_box.svg" alt="">
+  </div>
+  `;
+}
+
 /**
  * clear all form elements
  */
