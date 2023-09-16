@@ -1,10 +1,10 @@
 let task = {
   title: "",
   description: "",
-  assignedcontacts: [{ name: "peter" }],
+  assignedcontacts: [],
   date: "",
   prio: "",
-  category: "",
+  category: [],
   subtasks: [{ title: "update page" }],
 };
 
@@ -13,21 +13,87 @@ let contacts = [];
 selectedPrio = "";
 colId = 1;
 
+/**
+ * initial load of add task
+ */
 async function addTaskInit() {
   contacts = JSON.parse(await getItem("contacts"));
+  contacts.push(
+    {
+      name: "Sailor Moon",
+      email: "sailor@moon.test",
+      color: "#26bd46",
+    },
+    {
+      name: "Super Mario",
+      email: "super@mario.test",
+      color: "#FF3D00",
+    }
+  );
+  categories = JSON.parse(await getItem("categories"));
   setTimeout(() => {
     generateContactAdd();
   }, 200);
 }
 
+/**
+ * generate contact list for dropdown
+ */
 function generateContactAdd() {
+  document.getElementById("contact-options").innerHTML = "";
+  contacts.forEach((contact, index) => {
+    document.getElementById("contact-options").innerHTML += `
+    <div id="contact-opt-${index}" class="contact-choice" onclick="addContactToTask(${index})">
+      <div class="contact-avatar" style="background-color: ${contact.color}">
+      ${generateInitials(contact.name)}</div>
+      <div style="flex-grow: 1;">${contact.name}</div>
+      <img id="contact-cb-${index}" class="btn-icon" src="./icons/icon_box.svg" alt="">
+    </div>
+    `;
+  });
   document.getElementById("contact-options").innerHTML += `
-  <div class="contact-choice">
-    <div class="contact-avatar">HP</div>
-    <div>Harry Potter</div>
-    <img class="btn-icon" src="./icons/icon_box.svg" alt="">
-  </div>
-  `;
+    <button type="button" class="button-black" onclick="alert('add contact')">
+        Add Contact
+        <img
+        class="btn-icon"
+        src="./icons/icon_person_white.svg"
+      ></img>
+    </button>
+    `;
+}
+
+/**
+ * select contact in the addTask lisst
+ * @param index index inside the contacts array
+ */
+function addContactToTask(index) {
+  let contactOpt = document.getElementById("contact-opt-" + index);
+  let contactCB = document.getElementById("contact-cb-" + index);
+  if (contactOpt.classList.contains("contact-choice-selected")) {
+    contactOpt.classList.remove("contact-choice-selected");
+    contactCB.src = "./icons/icon_box.svg";
+    task.assignedcontacts.splice(index, 1);
+  } else {
+    contactOpt.classList.add("contact-choice-selected");
+    contactCB.src = "./icons/icon_box_checked_white.svg";
+    task.assignedcontacts.push(contacts[index]);
+  }
+  generateCosenContacts();
+}
+
+/**
+ * generate a list of the chosen contacts
+ */
+function generateCosenContacts() {
+  document.getElementById("addTask-chosen-contacts").innerHTML = "";
+  console.log(task.assignedcontacts);
+  task.assignedcontacts.forEach((contact) => {
+    document.getElementById("addTask-chosen-contacts").innerHTML += `
+    <div class="contact-avatar" style="background-color: ${
+      contact.color
+    }">${generateInitials(contact.name)}</div>
+    `;
+  });
 }
 
 /**
@@ -37,12 +103,17 @@ function clearForm() {
   getElements();
   task.title.value = "";
   task.description.value = "";
-  task.assignedContacts = [];
+
+  task.assignedcontacts = [];
+  generateContactAdd();
+  generateCosenContacts();
+  document.getElementById("contact-options").classList.add("d-none");
+
   task.date.value = "";
   resetPrioColors();
   selectedPrio = "";
   task.prio = "";
-  task.category.value = "";
+  task.category = [];
   task.subtasks = [];
   showMessage("Form cleared !");
 }

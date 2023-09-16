@@ -312,6 +312,10 @@ function closeAvatarMenuOutside(event) {
   }
 }
 
+/**
+ * reset all dta from the server
+ * hidden function
+ */
 function resetServerData() {
   categories = [
     {

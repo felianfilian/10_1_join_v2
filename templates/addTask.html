@@ -20,17 +20,11 @@
           <img class="btn-icon-small" src="./icons/icon_dropdown.svg" alt="V">  
         </div>
         <div id="contact-options" class="contact-options d-none">
-          <div class="contact-choice">
-            <div class="contact-avatar">HP</div>
-            <div>Harry Potter</div>
-            <img class="btn-icon" src="./icons/icon_box.svg" alt="">
-          </div>
-          <div class="contact-choice">
-            <div class="contact-avatar">HG</div>
-            <div>Hermine Granger</div>
-            <img class="btn-icon" src="./icons/icon_box.svg" alt="">
-          </div>
+          <!-- added contacts -->
         </div>
+      </div>
+      <div id="addTask-chosen-contacts">       
+        <!-- chosen contacts -->
       </div>
     </div>
 
@@ -47,7 +41,15 @@
       </div>
 
       <span>Category</span>
-      <input type="text" id="task-category" name="task-category" placeholder="Category" required/>
+      <div class="dropdown-menu">
+        <div class="dropdown-label" onclick="toggleOnOff('category-options')">
+          Select Category
+          <img class="btn-icon-small" src="./icons/icon_dropdown.svg" alt="V">  
+        </div>
+        <div id="category-options" class="contact-options d-none">
+          <!-- added contacts -->
+        </div>
+      </div>
       <span>Subtask</span>
       <input type="text" id="task-subtasks" name="task-subtask" placeholder="Subtasks" />
     </div>
@@ -57,7 +59,7 @@
     <button onclick="clearForm(); return false;">Clear</button>
     <button class="button-black">
       Create Task<img
-        class="btn-img-black"
+        class="btn-icon"
         src="./icons/icon_check_white.svg"
       ></img>
     </button>
