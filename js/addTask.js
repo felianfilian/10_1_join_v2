@@ -1,4 +1,5 @@
 let task = {
+  step: "col-1",
   title: "",
   description: "",
   assignedcontacts: [],
