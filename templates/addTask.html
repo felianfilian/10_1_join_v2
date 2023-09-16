@@ -32,7 +32,7 @@
 
     <div class="addTask-inputs">
       <span>Due date</span>
-      <input id="task-date" type="text" name="task-date" placeholder="Title" required/>
+      <input id="task-date" type="date" name="task-date" placeholder="dd / mm / yyyy" required/>
       <span>Prio</span>
       <div id="task-prio">
          <button id="prio01" type="button" class="prio-option" onclick="selectPrio('urgent'); return false;">Urgent</button>
@@ -41,8 +41,8 @@
       </div>
 
       <span>Category</span>
-      <div class="dropdown-menu">
-        <div class="dropdown-label" onclick="toggleOnOff('category-options')">
+      <div id="category-dd" class="dropdown-menu">
+        <div id="category-dd-text" class="dropdown-label" onclick="toggleOnOff('category-options')">
           Select Category
           <img class="btn-icon-small" src="./icons/icon_dropdown.svg" alt="V">  
         </div>

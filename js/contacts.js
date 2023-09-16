@@ -12,6 +12,9 @@ async function contactsInit() {
   }, 200);
 }
 
+/**
+ * generate lsit with contacts from the server
+ */
 function generateContactList() {
   document.getElementById("contact-list").innerHTML += generateContactItem(
     "SM",
@@ -20,6 +23,13 @@ function generateContactList() {
   );
 }
 
+/**
+ * create single contact for the contact list
+ * @param initials generated initials
+ * @param name
+ * @param email
+ * @returns html code
+ */
 function generateContactItem(initials, name, email) {
   return `
     <div class="contact-item">
@@ -30,4 +40,11 @@ function generateContactItem(initials, name, email) {
       </div>
     </div>
     `;
+}
+
+/**
+ * clear all form inputs of the add contact form
+ */
+function clearContactForm() {
+  alert("clear form");
 }

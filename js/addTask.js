@@ -34,6 +34,7 @@ async function addTaskInit() {
   categories = JSON.parse(await getItem("categories"));
   setTimeout(() => {
     generateContactAdd();
+    generateCategoryAdd();
   }, 200);
 }
 
@@ -64,7 +65,7 @@ function generateContactAdd() {
 }
 
 /**
- * select contact in the addTask lisst
+ * select contact in the addTask list
  * @param index index inside the contacts array
  */
 function addContactToTask(index) {
@@ -79,13 +80,13 @@ function addContactToTask(index) {
     contactCB.src = "./icons/icon_box_checked_white.svg";
     task.assignedcontacts.push(contacts[index]);
   }
-  generateCosenContacts();
+  generateChosenContacts();
 }
 
 /**
  * generate a list of the chosen contacts
  */
-function generateCosenContacts() {
+function generateChosenContacts() {
   document.getElementById("addTask-chosen-contacts").innerHTML = "";
   task.assignedcontacts.forEach((contact) => {
     document.getElementById("addTask-chosen-contacts").innerHTML += `
@@ -94,6 +95,41 @@ function generateCosenContacts() {
     }">${generateInitials(contact.name)}</div>
     `;
   });
+}
+
+/**
+ * generate category list for dropdown
+ */
+function generateCategoryAdd() {
+  document.getElementById("category-options").innerHTML = "";
+  categories.forEach((category, index) => {
+    document.getElementById("category-options").innerHTML += `
+    <div id="category-opt-${index}" class="contact-choice" onclick="selectCategory(${index})">
+      <div class="category-color" style="background-color: ${category.color};">
+      </div>
+      <div style="flex-grow: 1;">${category.name}</div>
+    </div>
+    `;
+  });
+  document.getElementById("category-options").innerHTML += `
+    <button type="button" class="button-black" onclick="alert('add category')">
+        Add New Category
+        <img
+        class="btn-icon"
+        src="./icons/icon_person_white.svg"
+      ></img>
+    </button>
+    `;
+}
+
+function selectCategory(index) {
+  document.getElementById("category-dd-text").innerHTML =
+    categories[index].name;
+  document.getElementById("category-dd-text").style.color = "#fff";
+  document.getElementById("category-dd").style.backgroundColor =
+    categories[index].color;
+  task.category = categories[index];
+  toggleOnOff("category-options");
 }
 
 /**

@@ -378,6 +378,7 @@ input:focus {
 
 .overlay-card {
   position: relative;
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;
@@ -394,6 +395,10 @@ input:focus {
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
 
   z-index: 999;
+}
+
+.overlay-card::-webkit-scrollbar {
+  display: none;
 }
 
 .overlay-addcontact-card {

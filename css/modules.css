@@ -628,6 +628,13 @@
   justify-content: space-between;
 }
 
+.category-color {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
 .prio-option {
   box-sizing: border-box;
 
