@@ -87,7 +87,6 @@ function addContactToTask(index) {
  */
 function generateCosenContacts() {
   document.getElementById("addTask-chosen-contacts").innerHTML = "";
-  console.log(task.assignedcontacts);
   task.assignedcontacts.forEach((contact) => {
     document.getElementById("addTask-chosen-contacts").innerHTML += `
     <div class="contact-avatar" style="background-color: ${

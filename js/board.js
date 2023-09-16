@@ -11,24 +11,6 @@ let btnLeft = "<div></div>";
 let btnRight = "";
 
 /**
- * preload all todos for the board
- */
-async function loadTodos() {
-  try {
-    todos = JSON.parse(await getItem("allTasks"));
-    for (let i = 0; i < todos.length; i++) {
-      todos[i].id = i;
-    }
-  } catch {
-    console.log("no data found on server");
-  }
-
-  setTimeout(() => {
-    updateHTML();
-  }, 200);
-}
-
-/**
  * update all board elements
  * fill the columns with tasks
  */

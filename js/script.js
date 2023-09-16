@@ -42,9 +42,9 @@ const monthsName = [
 // waiting time to show message and change page
 let messageDelay = 2200;
 
-let userName = "";
 let userColor = "";
 let userIndex = -1;
+let userName = "";
 
 /**
  * main inital load
@@ -77,6 +77,24 @@ async function loadServerData() {
   todos = JSON.parse(await getItem("todos"));
   categories = JSON.parse(await getItem("categories"));
 }
+
+/**
+ * preload all todos for the board
+ */
+// async function loadTodos() {
+//   try {
+//     todos = JSON.parse(await getItem("todos"));
+//     for (let i = 0; i < todos.length; i++) {
+//       todos[i].id = i;
+//     }
+//   } catch {
+//     console.log("no data found on server");
+//   }
+
+//   setTimeout(() => {
+//     updateHTML();
+//   }, 200);
+// }
 
 /**
  * load of inline page content
@@ -331,4 +349,59 @@ function resetServerData() {
   setItem("todos", []);
   setItem("contacts", []);
   setItem("categories", categories);
+}
+
+///////////////////////////
+// SUMMARY
+
+/**
+ * update summary data
+ */
+async function updateSummaryCounter() {
+  setTimeout(() => {
+    updateSummaryGreeting();
+
+    document.getElementById("task-board-counter").innerHTML = todos.length;
+    let todoProgress = todos.filter((t) => t["step"] == "col-02");
+    document.getElementById("todo-inprogress-counter").innerHTML =
+      todoProgress.length;
+    let todoAwait = todos.filter((t) => t["step"] == "col-03");
+    document.getElementById("todo-await-counter").innerHTML = todoAwait.length;
+    let todoOpen = todos.filter((t) => t["step"] == "col-01");
+    document.getElementById("todo-open-counter").innerHTML = todoOpen.length;
+    let todoDone = todos.filter((t) => t["step"] == "col-04");
+    document.getElementById("todo-done-counter").innerHTML = todoDone.length;
+
+    let todoUrgent = todos.filter((t) => t["prio"][0] == "URGENT");
+    document.getElementById("todo-prio-counter").innerHTML = todoUrgent.length;
+
+    //document.getElementById("next-date").innerHTML = getNextDate(todoUrgent);
+  }, 200);
+}
+
+/**
+ * update name for internal pages
+ */
+async function updateSummaryGreeting() {
+  userName = users[localStorage.getItem("activeID")].name;
+  document.getElementById("sum-greet").innerHTML = getGreeting();
+  document.getElementById("sum-name").innerHTML = userName;
+}
+
+/**
+ * get greeting string from actual time
+ * @returns greeting time
+ */
+function getGreeting() {
+  let currentDate = new Date();
+  let currentHour = currentDate.getHours();
+  if (currentHour >= 0 && currentHour < 12) {
+    return "Good Morning,";
+  } else if (currentHour >= 12 && currentHour < 18) {
+    return "Good Afternoon,";
+  } else if (currentHour >= 18) {
+    return "Good Evening,";
+  } else {
+    return "Hello,";
+  }
 }
