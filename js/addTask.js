@@ -1,3 +1,10 @@
+/**
+ * step = col-1 to col-4
+ * assignedcontacts = name, email, phone, color
+ * date = yyyy-mm-dd
+ * category = name, color
+ * subtasks = title, status
+ */
 let task = {
   step: "col-1",
   title: "",
@@ -6,7 +13,7 @@ let task = {
   date: "",
   prio: "",
   category: [],
-  subtasks: [{ title: "update page" }],
+  subtasks: [],
 };
 
 let contacts = [];
@@ -57,7 +64,7 @@ function generateContactAdd() {
     <button type="button" class="button-black" onclick="alert('add contact')">
         Add Contact
         <img
-        class="btn-icon"
+        class="btn-icon-img"
         src="./icons/icon_person_white.svg"
       ></img>
     </button>
@@ -115,7 +122,7 @@ function generateCategoryAdd() {
     <button type="button" class="button-black" onclick="alert('add category')">
         Add New Category
         <img
-        class="btn-icon"
+        class="btn-icon-img"
         src="./icons/icon_person_white.svg"
       ></img>
     </button>
@@ -132,6 +139,51 @@ function selectCategory(index) {
   toggleOnOff("category-options");
 }
 
+function resetCategoryDropdown() {
+  document.getElementById("category-dd-text").innerHTML = "Select Category";
+  document.getElementById("category-dd-text").style.color = "#000";
+  document.getElementById("category-dd").style.backgroundColor = "#fff";
+}
+
+/**
+ * add new subtask
+ */
+function addSubtask() {
+  let subtaskTitle = document.getElementById("task-add-subtask");
+  if (subtaskTitle.value == "") {
+    showMessage("Type a subtask title please!", "#FF3D00");
+  } else {
+    task.subtasks.push({
+      title: subtaskTitle.value,
+      status: false,
+    });
+  }
+  renderSubtasks();
+  subtaskTitle.value = "";
+}
+
+/**
+ * render all added subtask
+ */
+function renderSubtasks() {
+  document.getElementById("add-subtask-list").innerHTML = "";
+  task.subtasks.forEach((subtask, index) => {
+    document.getElementById("add-subtask-list").innerHTML += `
+    <div class="add-subtask-item">
+      <div>
+        ${subtask.title} - ${subtask.status}
+      </div>
+      <img class="button-icon" src="./icons/icon_bucket.svg" alt="X" onclick="deleteAddedSubtask(${index})">
+    </div>
+    `;
+  });
+}
+
+function deleteAddedSubtask(index) {
+  task.subtasks.splice(index, 1);
+  renderSubtasks();
+}
+
 /**
  * clear all form elements
  */
@@ -142,15 +194,21 @@ function clearForm() {
 
   task.assignedcontacts = [];
   generateContactAdd();
-  generateCosenContacts();
+  generateChosenContacts();
   document.getElementById("contact-options").classList.add("d-none");
 
   task.date.value = "";
   resetPrioColors();
   selectedPrio = "";
   task.prio = "";
+
   task.category = [];
+  generateCategoryAdd();
+  resetCategoryDropdown();
+
   task.subtasks = [];
+  renderSubtasks();
+
   showMessage("Form cleared !");
 }
 
@@ -202,11 +260,12 @@ function addTask() {
         task.prio +
         "\n" +
         "category: " +
-        task.category.value +
+        task.category +
         "\n" +
         "subtasks: " +
         task.subtasks
     );
+    clearForm();
   }
 }
 

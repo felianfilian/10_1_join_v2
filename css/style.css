@@ -149,12 +149,23 @@ input:focus {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.btn-icon {
+.button-icon {
+  width: 24px;
+  height: 24px;
+
+  cursor: pointer;
+}
+
+.button-icon:hover {
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+}
+
+.btn-icon-img {
   width: 24px;
   height: 24px;
 }
 
-.btn-icon-small {
+.btn-icon-img-small {
   width: 12px;
   height: 12px;
 }
