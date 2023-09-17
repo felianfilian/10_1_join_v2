@@ -647,6 +647,18 @@
   border: unset;
 }
 
+#add-subtask-container {
+  position: relative;
+}
+
+#btn-subtask {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+
+  cursor: pointer;
+}
+
 @media (max-width: 992px) {
   .addTask-container {
     flex-direction: column;
