@@ -56,6 +56,7 @@ async function mainInit() {
   setTimeout(() => {
     getUserData();
     updateHeader();
+    updateSummaryCounter();
     document.addEventListener("click", closeAvatarMenuOutside);
   }, 200);
 }
@@ -79,6 +80,7 @@ async function loadServerData() {
     todos[i].id = i;
   }
   categories = JSON.parse(await getItem("categories"));
+  contacts = JSON.parse(await getItem("contacts"));
 }
 
 /**
