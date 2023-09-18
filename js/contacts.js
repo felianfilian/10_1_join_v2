@@ -1,3 +1,4 @@
+let newContact = [];
 contacts = [
   {
     name: "peter pan",
@@ -46,5 +47,11 @@ function generateContactItem(initials, name, email) {
  * clear all form inputs of the add contact form
  */
 function clearContactForm() {
-  alert("clear form");
+  document.getElementById("contact-name").value = "";
+  document.getElementById("contact-email").value = "";
+  document.getElementById("contact-phone").value = "";
+}
+
+function addContact() {
+  //setItem("contacts", JSON.stringify(newContact))
 }

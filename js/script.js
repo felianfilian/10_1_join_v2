@@ -348,20 +348,20 @@ async function updateSummaryCounter() {
     updateSummaryGreeting();
 
     document.getElementById("task-board-counter").innerHTML = todos.length;
-    let todoProgress = todos.filter((t) => t["step"] == "col-02");
+    let todoProgress = todos.filter((t) => t["step"] == "col-2");
     document.getElementById("todo-inprogress-counter").innerHTML =
       todoProgress.length;
-    let todoAwait = todos.filter((t) => t["step"] == "col-03");
+    let todoAwait = todos.filter((t) => t["step"] == "col-3");
     document.getElementById("todo-await-counter").innerHTML = todoAwait.length;
-    let todoOpen = todos.filter((t) => t["step"] == "col-01");
+    let todoOpen = todos.filter((t) => t["step"] == "col-1");
     document.getElementById("todo-open-counter").innerHTML = todoOpen.length;
-    let todoDone = todos.filter((t) => t["step"] == "col-04");
+    let todoDone = todos.filter((t) => t["step"] == "col-4");
     document.getElementById("todo-done-counter").innerHTML = todoDone.length;
 
-    let todoUrgent = todos.filter((t) => t["prio"][0] == "URGENT");
+    let todoUrgent = todos.filter((t) => t["prio"] == "urgent");
     document.getElementById("todo-prio-counter").innerHTML = todoUrgent.length;
 
-    //document.getElementById("next-date").innerHTML = getNextDate(todoUrgent);
+    document.getElementById("next-date").innerHTML = getNextDate(todoUrgent);
   }, 200);
 }
 
@@ -393,5 +393,25 @@ function getGreeting() {
     return "Good Evening,";
   } else {
     return "Hello,";
+  }
+}
+
+/**
+ * check and show the next task
+ * @param element todo task from the server
+ * @returns next task to clear
+ */
+function getNextDate(element) {
+  if (element.length > 0) {
+    let nextdate = "3000-01-01";
+    element.forEach((todo) => {
+      if (todo["date"] < nextdate) {
+        nextdate = todo["date"];
+      }
+    });
+    let monthFull = monthsName[parseInt(nextdate.substring(5, 7))];
+    return `${nextdate.substring(8)}. ${monthFull} ${nextdate.substring(0, 4)}`;
+  } else {
+    return "No urgent task available";
   }
 }

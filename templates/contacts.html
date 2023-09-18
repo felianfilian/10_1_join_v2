@@ -34,19 +34,23 @@
 
 <div id="addContact-overlay" class="overlay-background d-none">
   <div class="overlay-addcontact-card">
-    <div class="overlay-addcontact-header">Tasks are Better with a Team!</div>
-    <div class="overlay-addcontact-inputs">
+    
+    <div class="overlay-addcontact-header">
+      <img src="./img/logo_light.svg" alt="JOIN" width="48px" height="48px">
+      <h1>Add Contact</h1>
+      <div>Tasks are Better with a Team!</div>
+    </div>
+    <form class="overlay-addcontact-inputs" onsubmit="return false;">
       <div
         class="btn-icon-img btn-overlay-close"
-        onclick="toggleOnOff('addContact-overlay')"
       >
-        <img src="./icons/cross.svg" alt="X" />
+        <img src="./icons/cross.svg" alt="X" onclick="toggleOnOff('addContact-overlay')"/>
       </div>
-      <input type="name" placeholder="Name" />
-      <input type="email" placeholder="E-Mail" />
-      <input type="number" placeholder="Phone" />
-      <div class="addTask-buttons">
-        <button onclick="clearContactForm(); return false;">
+      <input id="contact-name" class="contact-input" type="name" placeholder="Name" />
+      <input id="contact-email" class="contact-input" type="email" placeholder="E-Mail" />
+      <input id="contact-phone" class="contact-input" type="number" placeholder="Phone" />
+      <div class="add-contact-buttons">
+        <button type="button" onclick="clearContactForm(); return false;">
           Cancel
           <img
             class="btn-icon-img"
