@@ -53,5 +53,14 @@ function clearContactForm() {
 }
 
 function addContact() {
-  //setItem("contacts", JSON.stringify(newContact))
+  newContact = {
+    name: document.getElementById("contact-name").value,
+    email: document.getElementById("contact-email").value,
+    phone: document.getElementById("contact-phone").value,
+  };
+  contacts.push(newContact);
+  console.log(contacts);
+  //setItem("contacts", JSON.stringify(contacts))
+  showMessage("Contact added");
+  toggleOnOff("addContact-overlay");
 }

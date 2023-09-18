@@ -40,15 +40,15 @@
       <h1>Add Contact</h1>
       <div>Tasks are Better with a Team!</div>
     </div>
-    <form class="overlay-addcontact-inputs" onsubmit="return false;">
+    <form class="overlay-addcontact-inputs" onsubmit="addContact(); return false;">
       <div
         class="btn-icon-img btn-overlay-close"
       >
         <img src="./icons/cross.svg" alt="X" onclick="toggleOnOff('addContact-overlay')"/>
       </div>
-      <input id="contact-name" class="contact-input" type="name" placeholder="Name" />
-      <input id="contact-email" class="contact-input" type="email" placeholder="E-Mail" />
-      <input id="contact-phone" class="contact-input" type="number" placeholder="Phone" />
+      <input id="contact-name" class="contact-input" type="name" placeholder="Name" required/>
+      <input id="contact-email" class="contact-input" type="email" placeholder="E-Mail" required/>
+      <input id="contact-phone" class="contact-input" type="number" placeholder="Phone" required/>
       <div class="add-contact-buttons">
         <button type="button" onclick="clearContactForm(); return false;">
           Cancel
@@ -64,8 +64,6 @@
           ></img>
         </button>
       </div>
-      <!-- <div w3-include-html="./templates/addTask.html">
-    </div> -->
     </div>
   </div>
 </div>
