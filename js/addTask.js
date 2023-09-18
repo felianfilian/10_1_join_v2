@@ -12,7 +12,7 @@ let task = {
   assignedcontacts: [],
   date: "",
   prio: "",
-  category: [],
+  category: "",
   subtasks: [],
 };
 
@@ -118,15 +118,16 @@ function generateCategoryAdd() {
     </div>
     `;
   });
-  document.getElementById("category-options").innerHTML += `
-    <button type="button" class="button-black" onclick="alert('add category')">
-        Add New Category
-        <img
-        class="btn-icon-img"
-        src="./icons/icon_person_white.svg"
-      ></img>
-    </button>
-    `;
+  // OPTIONAL category add
+  //   document.getElementById("category-options").innerHTML += `
+  //     <button type="button" class="button-black" onclick="alert('add category')">
+  //         Add New Category
+  //         <img
+  //         class="btn-icon-img"
+  //         src="./icons/icon_person_white.svg"
+  //       ></img>
+  //     </button>
+  //     `;
 }
 
 function selectCategory(index) {
@@ -187,7 +188,7 @@ function deleteAddedSubtask(index) {
 /**
  * clear all form elements
  */
-function clearForm() {
+function clearForm(info = true) {
   getElements();
   task.title.value = "";
   task.description.value = "";
@@ -202,14 +203,15 @@ function clearForm() {
   selectedPrio = "";
   task.prio = "";
 
-  task.category = [];
+  task.category = "";
   generateCategoryAdd();
   resetCategoryDropdown();
 
   task.subtasks = [];
   renderSubtasks();
-
-  showMessage("Form cleared !");
+  if (info) {
+    showMessage("Form cleared !");
+  }
 }
 
 /**
@@ -220,9 +222,12 @@ function getElements() {
   task.description = document.getElementById("task-description");
   task.date = document.getElementById("task-date");
   task.prio = selectedPrio;
-  task.category = document.getElementById("task-category");
 }
 
+/**
+ * extra form validation
+ * @returns true or false
+ */
 function addTaskValidation() {
   if (task.prio == "") {
     showMessage("Set Prio please", "#FF3D00");
@@ -232,6 +237,10 @@ function addTaskValidation() {
   }
 }
 
+/**
+ * set column where the task should be added
+ * @param id column id
+ */
 function setColID(id) {
   colId = id;
 }
@@ -240,35 +249,45 @@ function setColID(id) {
  * add a task to a specific column
  * @param colId id of the board column
  */
-function addTask() {
+async function addTask() {
   getElements();
   if (addTaskValidation()) {
-    alert(
-      "title: " +
-        task.title.value +
-        "\n" +
-        "description: " +
-        task.description.value +
-        "\n" +
-        "assigned to: " +
-        task.assignedcontacts +
-        "\n" +
-        "date: " +
-        task.date.value +
-        "\n" +
-        "prio: " +
-        task.prio +
-        "\n" +
-        "category: " +
-        task.category +
-        "\n" +
-        "subtasks: " +
-        task.subtasks
-    );
-    clearForm();
+    // alert(
+    //   "title: " +
+    //     task.title.value +
+    //     "\n" +
+    //     "description: " +
+    //     task.description.value +
+    //     "\n" +
+    //     "assigned to: " +
+    //     task.assignedcontacts +
+    //     "\n" +
+    //     "date: " +
+    //     task.date.value +
+    //     "\n" +
+    //     "prio: " +
+    //     task.prio +
+    //     "\n" +
+    //     "category: " +
+    //     task.category +
+    //     "\n" +
+    //     "subtasks: " +
+    //     task.subtasks
+    // );
+    task.title = document.getElementById("task-title").value;
+    task.description = document.getElementById("task-description").value;
+    task.date = document.getElementById("task-date").value;
+    todos.push(task);
+    await setItem("todos", JSON.stringify(todos));
+    clearForm(false);
+    showMessage("Task added");
   }
 }
 
+/**
+ * show selected prio and save to local task
+ * @param prioId name of the prio
+ */
 function selectPrio(prioId) {
   selectedPrio = prioId;
   resetPrioColors();
@@ -284,6 +303,9 @@ function selectPrio(prioId) {
   }
 }
 
+/**
+ * reset colors of the prio buttons
+ */
 function resetPrioColors() {
   document.getElementById("prio01").style.color = "#000";
   document.getElementById("prio02").style.color = "#000";

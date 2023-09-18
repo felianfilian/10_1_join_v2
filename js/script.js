@@ -75,26 +75,11 @@ async function loadServerData() {
   userIndex = localStorage.getItem("activeID");
   users = JSON.parse(await getItem("users"));
   todos = JSON.parse(await getItem("todos"));
+  for (let i = 0; i < todos.length; i++) {
+    todos[i].id = i;
+  }
   categories = JSON.parse(await getItem("categories"));
 }
-
-/**
- * preload all todos for the board
- */
-// async function loadTodos() {
-//   try {
-//     todos = JSON.parse(await getItem("todos"));
-//     for (let i = 0; i < todos.length; i++) {
-//       todos[i].id = i;
-//     }
-//   } catch {
-//     console.log("no data found on server");
-//   }
-
-//   setTimeout(() => {
-//     updateHTML();
-//   }, 200);
-// }
 
 /**
  * load of inline page content
@@ -349,6 +334,7 @@ function resetServerData() {
   setItem("todos", []);
   setItem("contacts", []);
   setItem("categories", categories);
+  alert("Data ressetted");
 }
 
 ///////////////////////////
@@ -383,7 +369,11 @@ async function updateSummaryCounter() {
  * update name for internal pages
  */
 async function updateSummaryGreeting() {
-  userName = users[localStorage.getItem("activeID")].name;
+  if (localStorage.getItem("activeID") == -1) {
+    userName = "Guest";
+  } else {
+    userName = users[localStorage.getItem("activeID")].name;
+  }
   document.getElementById("sum-greet").innerHTML = getGreeting();
   document.getElementById("sum-name").innerHTML = userName;
 }
