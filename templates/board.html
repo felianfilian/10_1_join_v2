@@ -25,7 +25,7 @@
         <div class="col-header">
           <h3>To Do</h3>
           <img
-            onclick="alert('new task')"
+            onclick="toggleOnOff('addTask-overlay'); addTaskInit(); setColId('col-1')"
             class="btn-add"
             src="./icons/icon_box_plus.svg"
             alt="+"
@@ -47,7 +47,7 @@
         <div class="col-header">
           <h3>In Progress</h3>
           <img
-            onclick="alert('new task')"
+            onclick="toggleOnOff('addTask-overlay'); addTaskInit(); setColId('col-2')"
             class="btn-add"
             src="./icons/icon_box_plus.svg"
             alt="+"
@@ -67,7 +67,7 @@
         <div class="col-header">
           <h3>Await Feedback</h3>
           <img
-            onclick="alert('new task')"
+            onclick="toggleOnOff('addTask-overlay'); addTaskInit(); setColId('col-3')"
             class="btn-add"
             src="./icons/icon_box_plus.svg"
             alt="+"
@@ -106,6 +106,18 @@
     <div
       class="btn-icon btn-overlay-close"
       onclick="toggleOnOff('addTask-overlay')"
+    >
+      <img src="./icons/cross.svg" alt="X" />
+    </div>
+    <div w3-include-html="./templates/addTask.html"></div>
+  </div>
+</div>
+
+<div id="edit-task-overlay" class="overlay-background d-none">
+  <div class="overlay-card">
+    <div
+      class="btn-icon btn-overlay-close"
+      onclick="toggleOnOff('edit-task-overlay')"
     >
       <img src="./icons/cross.svg" alt="X" />
     </div>

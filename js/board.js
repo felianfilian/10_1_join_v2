@@ -58,7 +58,7 @@ function generateTodo(element, col) {
     ${btnLeft}
     ${btnRight}
   </div>
-  <div onclick="alert('open overlay for id ' + ${element.id})">
+  <div onclick="openEditTaskOverlay(${element.id})">
     <div  class="todo-category-container">
       <div class="todo-category" style="background-color:${
         element.category.color
@@ -264,23 +264,22 @@ function firstCharToUpperCase(element) {
 function searchTasks() {
   let col = [];
   let substring = document.getElementById("board-search").value.toLowerCase();
-  console.log(substring);
 
   for (let i = 1; i <= 4; i++) {
     console.log(todos["title"]);
     col[i - 1] = todos.filter(
       (t) =>
-        t["step"] == "col-0" + i &&
+        t["step"] == "col-" + i &&
         (t["title"].toLowerCase().includes(substring) ||
           t["description"].toLowerCase().includes(substring))
     );
     console.log(col[i - 1]);
-    document.getElementById("col-0" + i).innerHTML = "";
+    document.getElementById("col-" + i).innerHTML = "";
     if (col[i - 1].length == 0) {
-      document.getElementById("col-0" + i).innerHTML = generateEmptyTodo();
+      document.getElementById("col-" + i).innerHTML = generateEmptyTodo();
     }
     col[i - 1].forEach((todo) => {
-      document.getElementById("col-0" + i).innerHTML += generateTodo(todo);
+      document.getElementById("col-" + i).innerHTML += generateTodo(todo);
     });
   }
 }

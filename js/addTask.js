@@ -26,18 +26,6 @@ colId = 1;
  */
 async function addTaskInit() {
   contacts = JSON.parse(await getItem("contacts"));
-  contacts.push(
-    {
-      name: "Sailor Moon",
-      email: "sailor@moon.test",
-      color: "#26bd46",
-    },
-    {
-      name: "Super Mario",
-      email: "super@mario.test",
-      color: "#FF3D00",
-    }
-  );
   categories = JSON.parse(await getItem("categories"));
   setTimeout(() => {
     generateContactAdd();
@@ -241,8 +229,8 @@ function addTaskValidation() {
  * set column where the task should be added
  * @param id column id
  */
-function setColID(id) {
-  colId = id;
+function setColId(id) {
+  task.step = id;
 }
 
 /**
@@ -252,28 +240,6 @@ function setColID(id) {
 async function addTask() {
   getElements();
   if (addTaskValidation()) {
-    // alert(
-    //   "title: " +
-    //     task.title.value +
-    //     "\n" +
-    //     "description: " +
-    //     task.description.value +
-    //     "\n" +
-    //     "assigned to: " +
-    //     task.assignedcontacts +
-    //     "\n" +
-    //     "date: " +
-    //     task.date.value +
-    //     "\n" +
-    //     "prio: " +
-    //     task.prio +
-    //     "\n" +
-    //     "category: " +
-    //     task.category +
-    //     "\n" +
-    //     "subtasks: " +
-    //     task.subtasks
-    // );
     task.title = document.getElementById("task-title").value;
     task.description = document.getElementById("task-description").value;
     task.date = document.getElementById("task-date").value;
@@ -313,4 +279,8 @@ function resetPrioColors() {
   document.getElementById("prio01").style.backgroundColor = "#fff";
   document.getElementById("prio02").style.backgroundColor = "#fff";
   document.getElementById("prio03").style.backgroundColor = "#fff";
+}
+
+function openEditTaskOverlay(index) {
+  toggleOnOff("edit-task-overlay");
 }
