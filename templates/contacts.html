@@ -24,6 +24,7 @@
   </div>
 </div>
 
+<!-- Add Contact Overlay -->
 <div id="addContact-overlay" class="overlay-background d-none">
   <div class="overlay-addcontact-card">
     
@@ -31,16 +32,54 @@
       <img src="./img/logo_light.svg" alt="JOIN" width="48px" height="48px">
       <h1>Add Contact</h1>
       <div>Tasks are Better with a Team!</div>
+      <div class="blue-hor-divider"  style="max-width: 100px;"></div>
     </div>
-    <form class="overlay-addcontact-inputs" onsubmit="addContact(); return false;">
+      <div
+          class="btn-icon-img btn-overlay-close"
+        >
+          <img src="./icons/cross.svg" alt="X" onclick="toggleOnOff('addContact-overlay')"/>
+        </div>
+      <form class="overlay-addcontact-inputs" onsubmit="addContact(); return false;">
+        <input id="contact-name" class="contact-input" type="name" placeholder="Name" required/>
+        <input id="contact-email" class="contact-input" type="email" placeholder="E-Mail" required/>
+        <input id="contact-phone" class="contact-input" type="number" placeholder="Phone" required/>
+        <div class="add-contact-buttons">
+          <button type="button" onclick="clearContactForm(); return false;">
+            Cancel
+            <img
+              class="btn-icon-img"
+              src="./icons/icon_cross.svg"
+            ></img>
+          </button>
+          <button class="button-black">
+            Create Contact<img
+              class="btn-icon-img"
+              src="./icons/icon_check_white.svg"
+            ></img>
+          </button>
+        </div>
+      </form>    
+  </div>
+</div>
+
+<!-- Edit Contact Overlay -->
+<div id="editContact-overlay" class="overlay-background d-none">
+  <div class="overlay-addcontact-card">
+    
+    <div class="overlay-addcontact-header">
+      <img src="./img/logo_light.svg" alt="JOIN" width="48px" height="48px">
+      <h1>Edit Contact</h1>
+      <div class="blue-hor-divider" style="max-width: 100px;"></div>
+    </div>
+    <form class="overlay-addcontact-inputs" onsubmit="editContact(); return false;">
       <div
         class="btn-icon-img btn-overlay-close"
       >
-        <img src="./icons/cross.svg" alt="X" onclick="toggleOnOff('addContact-overlay')"/>
+        <img src="./icons/cross.svg" alt="X" onclick="toggleOnOff('editContact-overlay')"/>
       </div>
-      <input id="contact-name" class="contact-input" type="name" placeholder="Name" required/>
-      <input id="contact-email" class="contact-input" type="email" placeholder="E-Mail" required/>
-      <input id="contact-phone" class="contact-input" type="number" placeholder="Phone" required/>
+      <input id="edit-contact-name" class="contact-input" type="name" placeholder="Name" required/>
+      <input id="edit-contact-email" class="contact-input" type="email" placeholder="E-Mail" required/>
+      <input id="edit-contact-phone" class="contact-input" type="number" placeholder="Phone" required/>
       <div class="add-contact-buttons">
         <button type="button" onclick="clearContactForm(); return false;">
           Cancel
@@ -56,6 +95,6 @@
           ></img>
         </button>
       </div>
-    </div>
+    </form>
   </div>
 </div>

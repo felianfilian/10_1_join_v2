@@ -1,6 +1,9 @@
 let newContact = [];
 contacts = [];
 
+/**
+ * initial load of contacts page
+ */
 async function contactsInit() {
   setTimeout(() => {
     generateContactList();
@@ -58,7 +61,7 @@ function showContactDetails(index) {
           <div id="contact-details-name">${contact.name}</div>
 
           <div class="contact-details-btn-container">
-            <span class="contact-details-btn " onclick="alert('edit')">
+            <span class="contact-details-btn " onclick="toggleOnOff('editContact-overlay'); openEditContact(${index})">
               <img class="btn-icon" src="icons/icon_edit.svg">
               Edit
             </span>
@@ -103,6 +106,30 @@ function addContact() {
   generateContactList();
 }
 
+/**
+ * open the edit contact overlay
+ */
+function openEditContact(index) {
+  alert("edit " + index);
+}
+
+/**
+ * edit contact details
+ */
+function editcontact() {
+  tempContact = {
+    name: document.getElementById("edit-contact-name").value,
+    email: document.getElementById("edit-contact-email").value,
+    phone: document.getElementById("edit-contact-phone").value,
+    color: generateRandomColor(),
+  };
+  alert("edit");
+}
+
+/**
+ * delete single contact
+ * @param index of the contact
+ */
 function deleteContact(index) {
   contacts.splice(index, 1);
   setItem("contacts", JSON.stringify(contacts));
