@@ -1,6 +1,8 @@
 let newContact = [];
 contacts = [];
 
+let actualContactId;
+
 /**
  * initial load of contacts page
  */
@@ -16,8 +18,14 @@ async function contactsInit() {
 function generateContactList() {
   document.getElementById("contact-items").innerHTML = "";
   contacts.sort((a, b) => a.name.localeCompare(b.name));
-  console.log(contacts);
+  let firstLetter = "";
   contacts.forEach((contact, index) => {
+    if (firstLetter != contact.name[0]) {
+      firstLetter = contact.name[0];
+      document.getElementById("contact-items").innerHTML += `
+      <div class="contact-alphabet">${firstLetter}</div>
+      `;
+    }
     document.getElementById("contact-items").innerHTML += generateContactItem(
       contact,
       index
@@ -101,29 +109,37 @@ function addContact() {
   };
   contacts.push(newContact);
   setItem("contacts", JSON.stringify(contacts));
-  showMessage("Contact added");
   toggleOnOff("addContact-overlay");
+  showMessage("Contact added");
   generateContactList();
+  clearContactForm();
 }
 
 /**
  * open the edit contact overlay
  */
 function openEditContact(index) {
-  alert("edit " + index);
+  actualContactId = index;
+  document.getElementById("edit-contact-name").value = contacts[index].name;
+  document.getElementById("edit-contact-email").value = contacts[index].email;
+  document.getElementById("edit-contact-phone").value = contacts[index].phone;
 }
 
 /**
  * edit contact details
  */
-function editcontact() {
+function editContact() {
   tempContact = {
     name: document.getElementById("edit-contact-name").value,
     email: document.getElementById("edit-contact-email").value,
     phone: document.getElementById("edit-contact-phone").value,
     color: generateRandomColor(),
   };
-  alert("edit");
+  contacts[actualContactId] = tempContact;
+  setItem("contacts", JSON.stringify(contacts));
+  toggleOnOff("editContact-overlay");
+  showMessage("Contact changed");
+  generateContactList();
 }
 
 /**

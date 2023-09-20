@@ -417,3 +417,16 @@ function getNextDate(element) {
     return "No urgent task available";
   }
 }
+
+/**
+ * change dropdown image to dropup and back
+ */
+function changeDropdownImg(element, menu) {
+  getElement = document.getElementById(element);
+  getMenu = document.getElementById(menu);
+  if (getMenu.classList.contains("d-none")) {
+    getElement.src = "./icons/icon_dropdown.svg";
+  } else {
+    getElement.src = "./icons/icon_dropup.svg";
+  }
+}

@@ -15,9 +15,9 @@
       ></textarea>
       <span>Assigned to</span>
       <div class="dropdown-menu">
-        <div class="dropdown-label" onclick="toggleOnOff('contact-options')">
+        <div class="dropdown-label" onclick="toggleOnOff('contact-options'); changeDropdownImg('asgn-contacts-dropdowm-img', 'contact-options');">
           Select Contacts to assign
-          <img class="btn-icon-img-small" src="./icons/icon_dropdown.svg" alt="V">  
+          <img id="asgn-contacts-dropdowm-img" class="btn-icon-img-small" src="./icons/icon_dropdown.svg" alt="V">  
         </div>
         <div id="contact-options" class="contact-options d-none">
           <!-- added contacts -->
@@ -42,14 +42,15 @@
 
       <span>Category</span>
       <div id="category-dd" class="dropdown-menu">
-        <div class="dropdown-label" onclick="toggleOnOff('category-options')">
+        <div class="dropdown-label" onclick="toggleOnOff('category-options'); changeDropdownImg('category-dropdowm-img', 'category-options');">
           <div id="category-dd-text">Select Category</div>
-          <img class="btn-icon-img-small" src="./icons/icon_dropdown.svg" alt="V">  
+          <img id="category-dropdowm-img" class="btn-icon-img-small" src="./icons/icon_dropdown.svg" alt="V">  
         </div>
         <div id="category-options" class="contact-options d-none">
           <!-- added contacts -->
         </div>
       </div>
+
       <span>Subtask</span>
       <div id="add-subtask-container">
         <input type="text" id="task-add-subtask" placeholder="Create Subtask" maxlength="40" />
