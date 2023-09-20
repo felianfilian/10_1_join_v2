@@ -39,11 +39,7 @@
           ondrop="moveTo('col-1'); removeHighlight('col-1')"
           ondragleave="removeHighlight('col-1')"
           ondragover="allowDrop(event); highlight('col-1')"
-        >
-          <!-- <div>
-              <p>title</p>
-            </div> -->
-        </div>
+        ></div>
       </div>
       <div class="col col-02">
         <div class="col-header">
@@ -112,13 +108,134 @@
   </div>
 </div>
 
-<div id="edit-task-overlay" class="overlay-background d-none">
+<div id="show-task-overlay" class="overlay-background d-none">
   <div class="overlay-card">
-    <div class="btn-overlay-close" onclick="toggleOnOff('edit-task-overlay')">
-      <img class="btn-icon-img" src="./icons/cross.svg" alt="X" />
+    <div id="show-task" class="width-100">
+      <div class="btn-overlay-close" onclick="toggleOff('show-task-overlay')">
+        <img class="btn-icon-img" src="./icons/cross.svg" alt="X" />
+      </div>
+      <div id="board-edit-task-content" class="d-flex flex-col gap-16">
+        <!-- edit task content -->
+      </div>
     </div>
-    <div id="board-edit-task-content" class="d-flex flex-col gap-16">
-      <!-- edit task content -->
+
+    <div id="edit-task" class="width-100 d-none">
+      <div class="btn-overlay-close" onclick="toggleOff('edit-task');toggleOn('show-task');">
+        <img class="btn-icon-img" src="./icons/cross.svg" alt="X" />
+      </div>
+      <form class="container" onsubmit="addTask(); return false;">
+        <h1>Edit Task</h1>
+        <div class="addTask-container">
+          <div class="addTask-inputs">
+            <span>Title</span>
+            <input type="text" name="task-title" id="edit-task-title" placeholder="Title" maxlength="40" required/>
+            <span>Desription</span>
+            <textarea
+              name="edit-task-description"
+              id="task-description"
+              cols="30"
+              rows="5"
+              placeholder="Description"
+              required
+            ></textarea>
+            <span>Assigned to</span>
+            <div class="dropdown-menu">
+              <div class="dropdown-label" onclick="toggleOnOff('contact-options'); changeDropdownImg('asgn-contacts-dropdowm-img', 'contact-options');">
+                Select Contacts to assign
+                <img id="asgn-contacts-dropdowm-img" class="btn-icon-img-small" src="./icons/icon_dropdown.svg" alt="V">  
+              </div>
+              <div id="contact-options" class="contact-options d-none">
+                <!-- added contacts -->
+              </div>
+            </div>
+            <div id="addTask-chosen-contacts">       
+              <!-- chosen contacts -->
+            </div>
+          </div>
+      
+          <div class="addTask-border"></div>
+      
+          <div class="addTask-inputs">
+            <span>Due date</span>
+            <input id="task-date" type="date" name="edit-task-date" placeholder="dd / mm / yyyy" required/>
+            <span>Prio</span>
+            <div id="task-prio">
+               <button id="edit-prio01" type="button" class="prio-option" onclick="selectPrio('urgent', 'edit-'); return false;">Urgent</button>
+              <button id="edit-prio02" type="button" class="prio-option" onclick="selectPrio('medium', 'edit-'); return false;">Medium</button>
+              <button id="edit-prio03" type="button" class="prio-option" onclick="selectPrio('low', 'edit-'); return false;">Low</button>
+            </div>
+      
+            <span>Category</span>
+            <div id="category-dd" class="dropdown-menu">
+              <div class="dropdown-label" onclick="toggleOnOff('category-options'); changeDropdownImg('category-dropdowm-img', 'category-options');">
+                <div id="category-dd-text">Select Category</div>
+                <img id="category-dropdowm-img" class="btn-icon-img-small" src="./icons/icon_dropdown.svg" alt="V">  
+              </div>
+              <div id="category-options" class="contact-options d-none">
+                <!-- added contacts -->
+              </div>
+            </div>
+      
+            <span>Subtask</span>
+            <div id="add-subtask-container">
+              <input type="text" id="task-add-subtask" placeholder="Create Subtask" maxlength="40" />
+              <img id="btn-subtask" class="button-icon" src="./icons/icon_box_plus.svg" onclick="addSubtask(); return false;"></img>
+            </div>
+            <div id="add-subtask-list">
+              <!-- list of added subtask -->
+            </div>
+          </div>
+        </div>
+      
+        <div class="addTask-buttons">
+          <button type="button" onclick="clearForm(); return false;">Clear</button>
+          <button class="button-black">
+            Save<img
+              class="btn-img-icon"
+              src="./icons/icon_check_white.svg"
+            ></img>
+          </button>
+        </div>
+      </form>
+      
+      <!-- Add Contact Overlay -->
+      <div id="addContact-overlay" class="overlay-background d-none">
+        <div class="overlay-addcontact-card">
+          
+          <div class="overlay-addcontact-header">
+            <img src="./img/logo_light.svg" alt="JOIN" width="48px" height="48px">
+            <h1>Add Contact</h1>
+            <div>Tasks are Better with a Team!</div>
+            <div class="blue-hor-divider"  style="max-width: 100px;"></div>
+          </div>
+            <div
+                class="btn-icon-img btn-overlay-close"
+              >
+                <img src="./icons/cross.svg" alt="X" onclick="toggleOnOff('addContact-overlay')"/>
+              </div>
+            <form class="overlay-addcontact-inputs" onsubmit="taskAddContact(); return false;">
+              <input id="contact-name" class="contact-input" type="name" placeholder="Name" required/>
+              <input id="contact-email" class="contact-input" type="email" placeholder="E-Mail" required/>
+              <input id="contact-phone" class="contact-input" type="number" placeholder="Phone" required/>
+              <div class="add-contact-buttons">
+                <button type="button" onclick="clearContactForm(); return false;">
+                  Cancel
+                  <img
+                    class="btn-icon-img"
+                    src="./icons/icon_cross.svg"
+                  ></img>
+                </button>
+                <button class="button-black">
+                  Save<img
+                    class="btn-icon-img"
+                    src="./icons/icon_check_white.svg"
+                  ></img>
+                </button>
+              </div>
+            </form>    
+        </div>
+      </div>
+            
     </div>
   </div>
 </div>

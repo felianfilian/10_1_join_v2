@@ -233,6 +233,10 @@ input:focus {
   text-align: center;
 }
 
+.width-100 {
+  width: 100%;
+}
+
 .container {
   box-sizing: border-box;
 

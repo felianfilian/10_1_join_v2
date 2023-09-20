@@ -488,7 +488,6 @@
 
 .add-subtask-item {
   display: flex;
-  justify-content: space-between;
   padding: 4px 16px;
 }
 

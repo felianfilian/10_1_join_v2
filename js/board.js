@@ -201,15 +201,14 @@ function generateFullContacts(element) {
  * @returns html code with generated subtasks
  */
 function generateSubtasks(element) {
-  if (element["subtasks"].length > 0) {
+  if (element.subtasks.length > 0) {
     let finishedTasks = element["subtasks"].filter((t) => t["status"] == true);
-
-    let progress = (100 / element["subtasks"].length) * finishedTasks.length;
+    let progress = (100 / element.subtasks.length) * finishedTasks.length;
     return `<div class="todo-subtasks">
     <div class="status-bar">
       <div class="status-progress" style="width: ${progress}%"></div>
     </div>
-    ${finishedTasks.length}/${element["subtasks"].length} Subtasks</div>`;
+    ${finishedTasks.length}/${element.subtasks.length} Subtasks</div>`;
   } else {
     return "";
   }
@@ -316,8 +315,7 @@ function searchTasks() {
  */
 function openEditTaskOverlay(index) {
   element = todos[index];
-  console.log(element);
-  toggleOnOff("edit-task-overlay");
+  toggleOnOff("show-task-overlay");
   document.getElementById("board-edit-task-content").innerHTML = `
   <div class="todo-category-container">
     <div class="todo-category" style="background-color:${
@@ -354,7 +352,7 @@ function openEditTaskOverlay(index) {
   
 
   <div class="d-flex pos-br">
-    <span class="contact-details-btn " onclick="toggleOnOff('editContact-overlay'); openEditContact(${index})">
+    <span class="contact-details-btn " onclick="toggleOn('edit-task');toggleOff('show-task'); fillTaskEdit(${index});">
       <img class="btn-icon" src="icons/icon_edit.svg">
       Edit
     </span>
@@ -373,7 +371,7 @@ function openEditTaskOverlay(index) {
 function deleteTodo(index) {
   todos.splice(index, 1);
   setItem("todos", JSON.stringify(todos));
-  toggleOnOff("edit-task-overlay");
+  toggleOnOff("show-task-overlay");
   updateBoard();
   showMessage("Task deleted", "#FF3D00");
 }
@@ -386,13 +384,52 @@ function renderCheckSubtasks(element) {
   let subtasks = element.subtasks;
   subtasks.forEach((subtask, index) => {
     document.getElementById("check-subtask-container").innerHTML += `
-    <div class="add-subtask-item c-pointer" onclick="alert('check')">
-      <img class="button-icon mr-16" src="./icons/icon_box.svg" alt="X" >  
+    <div class="add-subtask-item c-pointer" onclick="checkSubtask(${index})">
+      <img id="subtask-cb${index}" class="button-icon mr-16" src="${showCheckbox(
+      index
+    )}" alt="X" >  
       <div>
-        ${subtask.title} - ${subtask.status}
+        ${subtask.title}
       </div>
-      
     </div>
     `;
   });
+}
+
+/**
+ * set a subtask to checked or unchecked
+ * @param index
+ */
+function checkSubtask(index) {
+  if (element.subtasks[index].status == false) {
+    element.subtasks[index].status = true;
+  } else {
+    element.subtasks[index].status = false;
+  }
+  setItem("todos", JSON.stringify(todos));
+  renderCheckSubtasks(element);
+  updateBoard();
+}
+
+/**
+ * show unchecked or checked box
+ * @param index of subtask
+ */
+function showCheckbox(index) {
+  if (element.subtasks[index].status == false) {
+    return "./icons/icon_box.svg";
+  } else {
+    return "./icons/icon_box_checked.svg";
+  }
+}
+
+/**
+ * fill the edit task form
+ */
+function fillTaskEdit(index) {
+  let element = todos[index];
+  document.getElementById("edit-task-title").value = element.title;
+  // document.getElementById("edit-task-description").text = element.description;
+  selectPrio(element.prio, "edit-");
+  //document.getElementById("edit-task-date").value = element.date;
 }

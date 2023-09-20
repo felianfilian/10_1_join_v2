@@ -317,6 +317,17 @@ function toggleOn(id) {
 }
 
 /**
+ * turn the display style off
+ * @param id id selector of the element
+ */
+function toggleOff(id) {
+  let element = document.getElementById(id);
+  if (!element.classList.contains("d-none")) {
+    element.classList.add("d-none");
+  }
+}
+
+/**
  * close geader menu on click outside
  * @param  event
  */

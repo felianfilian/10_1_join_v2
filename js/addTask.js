@@ -182,9 +182,9 @@ function renderSubtasks() {
   document.getElementById("add-subtask-list").innerHTML = "";
   task.subtasks.forEach((subtask, index) => {
     document.getElementById("add-subtask-list").innerHTML += `
-    <div class="add-subtask-item">
+    <div class="add-subtask-item" style="justify-content: space-between;">
       <div>
-        ${subtask.title} - ${subtask.status}
+        ${subtask.title}  
       </div>
       <img class="button-icon" src="./icons/icon_bucket.svg" alt="X" onclick="deleteAddedSubtask(${index})">
     </div>
@@ -278,29 +278,29 @@ async function addTask() {
  * show selected prio and save to local task
  * @param prioId name of the prio
  */
-function selectPrio(prioId) {
+function selectPrio(prioId, path = "") {
   selectedPrio = prioId;
-  resetPrioColors();
+  resetPrioColors(path);
   if (prioId == "urgent") {
-    document.getElementById("prio01").style.backgroundColor = "#FF3D00";
-    document.getElementById("prio01").style.color = "#fff";
+    document.getElementById(path + "prio01").style.backgroundColor = "#FF3D00";
+    document.getElementById(path + "prio01").style.color = "#fff";
   } else if (prioId == "medium") {
-    document.getElementById("prio02").style.backgroundColor = "#FFA800";
-    document.getElementById("prio02").style.color = "#fff";
+    document.getElementById(path + "prio02").style.backgroundColor = "#FFA800";
+    document.getElementById(path + "prio02").style.color = "#fff";
   } else if (prioId == "low") {
-    document.getElementById("prio03").style.backgroundColor = "#7AE229";
-    document.getElementById("prio03").style.color = "#fff";
+    document.getElementById(path + "prio03").style.backgroundColor = "#7AE229";
+    document.getElementById(path + "prio03").style.color = "#fff";
   }
 }
 
 /**
  * reset colors of the prio buttons
  */
-function resetPrioColors() {
-  document.getElementById("prio01").style.color = "#000";
-  document.getElementById("prio02").style.color = "#000";
-  document.getElementById("prio03").style.color = "#000";
-  document.getElementById("prio01").style.backgroundColor = "#fff";
-  document.getElementById("prio02").style.backgroundColor = "#fff";
-  document.getElementById("prio03").style.backgroundColor = "#fff";
+function resetPrioColors(path = "") {
+  document.getElementById(path + "prio01").style.color = "#000";
+  document.getElementById(path + "prio02").style.color = "#000";
+  document.getElementById(path + "prio03").style.color = "#000";
+  document.getElementById(path + "prio01").style.backgroundColor = "#fff";
+  document.getElementById(path + "prio02").style.backgroundColor = "#fff";
+  document.getElementById(path + "prio03").style.backgroundColor = "#fff";
 }
