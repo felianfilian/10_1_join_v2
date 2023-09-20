@@ -42,7 +42,7 @@ function generateContactList() {
  */
 function generateContactItem(contact, index) {
   return `
-    <div class="contact-item" onclick="showContactDetails(${index})">
+    <div class="contact-item" onclick="showContactDetails(${index});toggleOn('contact-detail-container')">
       <div class="contact-list-avatar" style="background-color: ${
         contact.color
       }">${generateInitials(contact.name)}</div>
@@ -67,7 +67,6 @@ function showContactDetails(index) {
         }">${generateInitials(contact.name)}</div>
         <div class="contact-details-menu">
           <div id="contact-details-name">${contact.name}</div>
-
           <div class="contact-details-btn-container">
             <span class="contact-details-btn " onclick="toggleOnOff('editContact-overlay'); openEditContact(${index})">
               <img class="btn-icon" src="icons/icon_edit.svg">

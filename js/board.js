@@ -16,6 +16,7 @@ let btnLeft = "<div></div>";
 let btnRight = "";
 
 function boardInit() {
+  loadServerData();
   setTimeout(() => {
     updateBoard();
   }, 200);
@@ -65,19 +66,20 @@ function generateTodo(element, col) {
       }">${element.category.name}
       </div>  
     </div> 
-    <div class="todo-title">${firstCharToUpperCase(element.title)}</div>
-    <div class="todo-content">${firstCharToUpperCase(
-      element["description"]
-    )}</div>
+    <div class="todo-title">
+      ${firstCharToUpperCase(element.title)}
+    </div>
+    <div class="todo-content mb-16">
+      ${firstCharToUpperCase(element["description"])}
+    </div>
     ${generateSubtasks(element)}
     <div class="todo-footer">
       <div class="todo-avatar-container">
-      ${generateContacts(element)}
+        ${generateContacts(element)}
       </div>
       <img src="${prioImg[element.prio]}">
     </div>
-    </div>
-    </div>
+  </div>
     `;
 }
 
@@ -157,6 +159,30 @@ function generateContacts(element) {
       initials = generateInitials(element["assignedcontacts"][i]["name"]);
       contactColor = element["assignedcontacts"][i]["color"];
       contactList += `<div class="todo-avatar" style="background-color: ${contactColor}; left:${
+        i * 30
+      }px">${initials}</div>`;
+      if (i >= 4) {
+        break;
+      }
+    }
+    return contactList;
+  } else {
+    return `<div class="no-avatar" style="background-color: #FF4646;">No Contacts</div>`;
+  }
+}
+
+/**
+ * generate contact list for the board tasks
+ * @param {*} element todo data from the server
+ * @returns html code with all generated contacs
+ */
+function generateFullContacts(element) {
+  let contactList = "";
+  if (element["assignedcontacts"].length > 0) {
+    for (let i = 0; i < element["assignedcontacts"].length; i++) {
+      initials = generateInitials(element["assignedcontacts"][i]["name"]);
+      contactColor = element["assignedcontacts"][i]["color"];
+      contactList += `<div class="todo-full-avatar" style="background-color: ${contactColor}; left:${
         i * 30
       }px">${initials}</div>`;
       if (i >= 4) {
@@ -250,7 +276,7 @@ function removeHighlight(id) {
  * save actual data to the server
  */
 async function saveBoard() {
-  await setItem("allTasks", JSON.stringify(todos));
+  await setItem("todos", JSON.stringify(todos));
 }
 
 // make the first character of a string (element) uppercase
@@ -282,4 +308,91 @@ function searchTasks() {
       document.getElementById("col-" + i).innerHTML += generateTodo(todo);
     });
   }
+}
+
+/**
+ * edit task overlay
+ * @param index of the edited task
+ */
+function openEditTaskOverlay(index) {
+  element = todos[index];
+  console.log(element);
+  toggleOnOff("edit-task-overlay");
+  document.getElementById("board-edit-task-content").innerHTML = `
+  <div class="todo-category-container">
+    <div class="todo-category" style="background-color:${
+      element.category.color
+    }">${element.category.name}
+    </div>  
+  </div> 
+  <div class="todo-title">
+    ${firstCharToUpperCase(element.title)}
+  </div>
+  <div class="todo-content">
+    ${firstCharToUpperCase(element["description"])}
+  </div>
+  <div class="d-flex">
+    <p>Due date: </p>
+    <p>${element.date}</p>
+  </div>  
+  <div class="d-flex">
+    <p>Priority: </p>
+    <p>${element.prio}</p>
+    <img src="${prioImg[element.prio]}">
+  </div>  
+  <p>Assigned to:</p>
+  <div class="d-flex gap-8">
+      ${generateFullContacts(element)}
+  </div>
+  <p>Subtasks:</p>
+  <div class="d-flex gap-8">
+    <div id="check-subtask-container">    
+    ${setTimeout(() => {
+      renderCheckSubtasks(element);
+    }, 200)}  
+  </div>
+  
+
+  <div class="d-flex pos-br">
+    <span class="contact-details-btn " onclick="toggleOnOff('editContact-overlay'); openEditContact(${index})">
+      <img class="btn-icon" src="icons/icon_edit.svg">
+      Edit
+    </span>
+    <span class="contact-details-btn " onclick="deleteTodo(${index})">
+      <img class="btn-icon" src="icons/icon_bucket.svg">
+      Delete
+    </span>
+  </div>
+    `;
+}
+
+/**
+ * delete todo from the server
+ * @param index of the todo
+ */
+function deleteTodo(index) {
+  todos.splice(index, 1);
+  setItem("todos", JSON.stringify(todos));
+  toggleOnOff("edit-task-overlay");
+  updateBoard();
+  showMessage("Task deleted", "#FF3D00");
+}
+
+/**
+ * render subtask that can be checked
+ */
+function renderCheckSubtasks(element) {
+  document.getElementById("check-subtask-container").innerHTML = "";
+  let subtasks = element.subtasks;
+  subtasks.forEach((subtask, index) => {
+    document.getElementById("check-subtask-container").innerHTML += `
+    <div class="add-subtask-item c-pointer" onclick="alert('check')">
+      <img class="button-icon mr-16" src="./icons/icon_box.svg" alt="X" >  
+      <div>
+        ${subtask.title} - ${subtask.status}
+      </div>
+      
+    </div>
+    `;
+  });
 }

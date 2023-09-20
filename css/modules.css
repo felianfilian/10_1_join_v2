@@ -187,6 +187,10 @@
   cursor: pointer;
 }
 
+.todo:hover {
+  transform: rotate(2deg);
+}
+
 .emptyTodo {
   display: flex;
   justify-content: center;
@@ -226,8 +230,6 @@
 }
 
 .todo-content {
-  margin-bottom: 16px;
-
   word-wrap: break-word;
 }
 
@@ -252,6 +254,18 @@
 .todo-avatar {
   position: absolute;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  color: #ffffff;
+}
+
+.todo-full-avatar {
   display: flex;
   justify-content: center;
   align-items: center;

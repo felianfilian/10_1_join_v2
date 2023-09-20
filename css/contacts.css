@@ -73,15 +73,23 @@
   font-size: 24px;
 }
 
-.contact-detail-container {
+#contact-detail-container {
   padding: 16px;
+
+  min-width: 300px;
+  min-height: 200px;
 }
 
 .contact-details-header {
   display: flex;
+  align-items: center;
   gap: 16px;
 
   margin: 32px;
+}
+
+#btn-contact-detail-close {
+  display: none;
 }
 
 #contact-details-name {
@@ -206,10 +214,18 @@
     width: 100%;
   }
 
-  .contact-detail-container {
+  #contact-detail-container {
     position: fixed;
     display: block;
 
     background-color: #fff;
+    border-radius: 32px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+
+    z-index: 999;
+  }
+
+  #btn-contact-detail-close {
+    display: flex;
   }
 }

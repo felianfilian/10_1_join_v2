@@ -304,7 +304,3 @@ function resetPrioColors() {
   document.getElementById("prio02").style.backgroundColor = "#fff";
   document.getElementById("prio03").style.backgroundColor = "#fff";
 }
-
-function openEditTaskOverlay(index) {
-  toggleOnOff("edit-task-overlay");
-}

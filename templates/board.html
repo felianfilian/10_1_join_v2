@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="./css/board.css" />
+
 <div class="container">
   <div id="kanban-board">
     <div class="board-header">
@@ -103,11 +105,8 @@
 
 <div id="addTask-overlay" class="overlay-background d-none">
   <div class="overlay-card">
-    <div
-      class="btn-icon btn-overlay-close"
-      onclick="toggleOnOff('addTask-overlay')"
-    >
-      <img src="./icons/cross.svg" alt="X" />
+    <div class="btn-overlay-close" onclick="toggleOnOff('addTask-overlay')">
+      <img class="btn-icon-img" src="./icons/cross.svg" alt="X" />
     </div>
     <div w3-include-html="./templates/addTask.html"></div>
   </div>
@@ -115,12 +114,11 @@
 
 <div id="edit-task-overlay" class="overlay-background d-none">
   <div class="overlay-card">
-    <div
-      class="btn-icon btn-overlay-close"
-      onclick="toggleOnOff('edit-task-overlay')"
-    >
-      <img src="./icons/cross.svg" alt="X" />
+    <div class="btn-overlay-close" onclick="toggleOnOff('edit-task-overlay')">
+      <img class="btn-icon-img" src="./icons/cross.svg" alt="X" />
     </div>
-    <div w3-include-html="./templates/addTask.html"></div>
+    <div id="board-edit-task-content" class="d-flex flex-col gap-16">
+      <!-- edit task content -->
+    </div>
   </div>
 </div>
