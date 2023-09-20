@@ -100,6 +100,9 @@ function clearContactForm() {
   document.getElementById("contact-phone").value = "";
 }
 
+/**
+ * create new contact and save it to the server
+ */
 function addContact() {
   newContact = {
     name: document.getElementById("contact-name").value,

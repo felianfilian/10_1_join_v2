@@ -49,7 +49,7 @@ function generateContactAdd() {
     `;
   });
   document.getElementById("contact-options").innerHTML += `
-    <button type="button" class="button-black" onclick="alert('add contact')">
+    <button type="button" class="button-black" onclick="toggleOnOff('addContact-overlay');">
         Add Contact
         <img
         class="btn-icon-img"
@@ -57,6 +57,24 @@ function generateContactAdd() {
       ></img>
     </button>
     `;
+}
+
+/**
+ * create new contact at addTask and save it to the server
+ */
+function taskAddContact() {
+  newContact = {
+    name: document.getElementById("contact-name").value,
+    email: document.getElementById("contact-email").value,
+    phone: document.getElementById("contact-phone").value,
+    color: generateRandomColor(),
+  };
+  contacts.push(newContact);
+  setItem("contacts", JSON.stringify(contacts));
+  toggleOnOff("addContact-overlay");
+  showMessage("Contact added");
+  generateContactAdd();
+  clearContactForm();
 }
 
 /**
@@ -118,6 +136,9 @@ function generateCategoryAdd() {
   //     `;
 }
 
+/***
+ * dropdown ctaegory selection
+ */
 function selectCategory(index) {
   document.getElementById("category-dd-text").innerHTML =
     categories[index].name;
@@ -128,6 +149,9 @@ function selectCategory(index) {
   toggleOnOff("category-options");
 }
 
+/**
+ * reset dropdown title on close
+ */
 function resetCategoryDropdown() {
   document.getElementById("category-dd-text").innerHTML = "Select Category";
   document.getElementById("category-dd-text").style.color = "#000";
