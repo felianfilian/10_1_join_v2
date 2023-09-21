@@ -474,7 +474,8 @@
   border: unset;
 }
 
-#add-subtask-container {
+#add-subtask-container,
+#edit-add-subtask-container {
   position: relative;
 }
 

@@ -55,18 +55,18 @@
         </div>
   
         <span>Subtask</span>
-        <div id="add-subtask-container">
-          <input type="text" id="task-add-subtask" placeholder="Create Subtask" maxlength="40" />
+        <div id="edit-add-subtask-container">
+          <input type="text" id="edit-task-add-subtask" placeholder="Create Subtask" maxlength="40" />
           <img id="btn-subtask" class="button-icon" src="./icons/icon_box_plus.svg" onclick="addSubtask(); return false;"></img>
         </div>
-        <div id="add-subtask-list">
+        <div id="edit-add-subtask-list">
           <!-- list of added subtask -->
         </div>
       </div>
     </div>
   
     <div class="addTask-buttons">
-      <button type="button" onclick="clearForm(); return false;">Clear</button>
+      <button type="button" onclick="toggleOff('edit-task'); toggleOn('show-task'); return false;">Cancel</button>
       <button class="button-black">
         Save<img
           class="btn-img-icon"

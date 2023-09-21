@@ -186,12 +186,17 @@ function renderSubtasks() {
       <div>
         ${subtask.title}  
       </div>
-      <img class="button-icon" src="./icons/icon_bucket.svg" alt="X" onclick="deleteAddedSubtask(${index})">
+      <img class="button-icon" type="button" src="./icons/icon_bucket.svg" alt="X" onclick="deleteAddedSubtask(${index});">
     </div>
     `;
   });
 }
 
+/**
+ * delete subtask
+ * it is not actually saved to the server
+ * @param index subtask index
+ */
 function deleteAddedSubtask(index) {
   task.subtasks.splice(index, 1);
   renderSubtasks();
