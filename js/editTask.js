@@ -13,6 +13,7 @@ function fillTaskEdit(index) {
   selectPrio(element.prio, "edit-");
   document.getElementById("edit-task-date").value = element.date;
   editGenerateCategoryAdd();
+  setCategory(index);
   editSubtasks = element.subtasks;
   editRenderSubtasks(editSubtasks);
 }
@@ -95,19 +96,54 @@ function editGenerateChosenContacts() {
 }
 
 /**
+ * show loaded category
+ * @param index
+ */
+function setCategory(index) {
+  document.getElementById("edit-category-dd-text").innerHTML =
+    todos[index].category.name;
+  document.getElementById("edit-category-dd-text").style.color = "#fff";
+  document.getElementById("edit-category-dd").style.backgroundColor =
+    todos[index].category.color;
+  editCategory = todos[index].category;
+}
+
+/**
  * generate category list for dropdown
  */
 function editGenerateCategoryAdd() {
   document.getElementById("edit-category-options").innerHTML = "";
   categories.forEach((category, index) => {
     document.getElementById("edit-category-options").innerHTML += `
-    <div id="edit-category-opt-${index}" class="contact-choice" onclick="selectCategory(${index})">
+    <div id="edit-category-opt-${index}" class="contact-choice" onclick="editSelectCategory(${index})">
       <div class="category-color" style="background-color: ${category.color};">
       </div>
       <div style="flex-grow: 1;">${category.name}</div>
     </div>
     `;
   });
+}
+
+/***
+ * dropdown ctaegory selection
+ */
+function editSelectCategory(index) {
+  document.getElementById("edit-category-dd-text").innerHTML =
+    categories[index].name;
+  document.getElementById("edit-category-dd-text").style.color = "#fff";
+  document.getElementById("edit-category-dd").style.backgroundColor =
+    categories[index].color;
+  editCategory = categories[index];
+  toggleOnOff("edit-category-options");
+}
+
+/**
+ * reset dropdown title on close
+ */
+function resetCategoryDropdown() {
+  document.getElementById("category-dd-text").innerHTML = "Select Category";
+  document.getElementById("category-dd-text").style.color = "#000";
+  document.getElementById("category-dd").style.backgroundColor = "#fff";
 }
 
 /**
@@ -160,16 +196,19 @@ function editDeleteAddedSubtask(index) {
  */
 function editTask() {
   alert(
-    document.getElementById("edit-task-title").value +
-      "\n" +
+    "Title: " +
+      document.getElementById("edit-task-title").value +
+      "\n Description: " +
       document.getElementById("edit-task-description").value +
-      "\n" +
+      "\n Contacts: " +
       editContacts +
-      "\n" +
+      "\n Date: " +
       document.getElementById("edit-task-date").value +
-      "\n" +
+      "\n Category: " +
+      editCategory.name +
+      "\n Prio: " +
       selectedPrio +
-      "\n" +
+      "\n Subtasks: " +
       editSubtasks
   );
 }
