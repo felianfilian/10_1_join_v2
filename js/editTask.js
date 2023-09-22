@@ -1,12 +1,24 @@
-let editContacts = [];
-let editCategory = "";
-let editSubtasks = [];
+let changedTask = {
+  step: "col-1",
+  title: "",
+  description: "",
+  assignedcontacts: [],
+  date: "",
+  prio: "",
+  category: "",
+  subtasks: [],
+};
+
+let selectedPrio = "";
+let todoId = 0;
 
 /**
  * fill the edit task form
  */
 function fillTaskEdit(index) {
+  todoId = index;
   let element = todos[index];
+  changedTask.step = element.step;
   document.getElementById("edit-task-title").value = element.title;
   document.getElementById("edit-task-description").value = element.description;
   editGenerateContactAdd();
@@ -14,8 +26,8 @@ function fillTaskEdit(index) {
   document.getElementById("edit-task-date").value = element.date;
   editGenerateCategoryAdd();
   setCategory(index);
-  editSubtasks = element.subtasks;
-  editRenderSubtasks(editSubtasks);
+  changedTask.subtasks = element.subtasks;
+  editRenderSubtasks(changedTask.subtasks);
 }
 
 /**
@@ -71,11 +83,11 @@ function editAddContactToTask(index) {
   if (contactOpt.classList.contains("contact-choice-selected")) {
     contactOpt.classList.remove("contact-choice-selected");
     contactCB.src = "./icons/icon_box.svg";
-    editContacts.splice(index, 1);
+    changedTask.assignedcontacts.splice(index, 1);
   } else {
     contactOpt.classList.add("contact-choice-selected");
     contactCB.src = "./icons/icon_box_checked_white.svg";
-    editContacts.push(contacts[index]);
+    changedTask.assignedcontacts.push(contacts[index]);
   }
   editGenerateChosenContacts();
   toggleOff("edit-contact-options");
@@ -86,7 +98,7 @@ function editAddContactToTask(index) {
  */
 function editGenerateChosenContacts() {
   document.getElementById("edit-addTask-chosen-contacts").innerHTML = "";
-  editContacts.forEach((contact) => {
+  changedTask.assignedcontacts.forEach((contact) => {
     document.getElementById("edit-addTask-chosen-contacts").innerHTML += `
     <div class="contact-avatar" style="background-color: ${
       contact.color
@@ -105,7 +117,7 @@ function setCategory(index) {
   document.getElementById("edit-category-dd-text").style.color = "#fff";
   document.getElementById("edit-category-dd").style.backgroundColor =
     todos[index].category.color;
-  editCategory = todos[index].category;
+  changedTask.category = todos[index].category;
 }
 
 /**
@@ -133,7 +145,7 @@ function editSelectCategory(index) {
   document.getElementById("edit-category-dd-text").style.color = "#fff";
   document.getElementById("edit-category-dd").style.backgroundColor =
     categories[index].color;
-  editCategory = categories[index];
+  changedTask.category = categories[index];
   toggleOnOff("edit-category-options");
 }
 
@@ -154,12 +166,12 @@ function editAddSubtask() {
   if (subtaskTitle.value == "") {
     showMessage("Type a subtask title please!", "#FF3D00");
   } else {
-    task.subtasks.push({
+    changedTask.subtasks.push({
       title: subtaskTitle.value,
       status: false,
     });
   }
-  editRenderSubtasks(editSubtasks);
+  editRenderSubtasks(changedTask.subtasks);
   subtaskTitle.value = "";
 }
 
@@ -186,29 +198,41 @@ function editRenderSubtasks(element) {
  * @param index subtask index
  */
 function editDeleteAddedSubtask(index) {
-  editSubtasks.splice(index, 1);
-  console.log(editSubtasks);
-  editRenderSubtasks(editSubtasks);
+  changedTask.subtasks.splice(index, 1);
+  editRenderSubtasks(changedTask.subtasks);
 }
 
 /**
  * save edited task to server
  */
-function editTask() {
-  alert(
-    "Title: " +
-      document.getElementById("edit-task-title").value +
-      "\n Description: " +
-      document.getElementById("edit-task-description").value +
-      "\n Contacts: " +
-      editContacts +
-      "\n Date: " +
-      document.getElementById("edit-task-date").value +
-      "\n Category: " +
-      editCategory.name +
-      "\n Prio: " +
-      selectedPrio +
-      "\n Subtasks: " +
-      editSubtasks
-  );
+async function editTask() {
+  changedTask.title = document.getElementById("edit-task-title").value;
+  changedTask.description = document.getElementById(
+    "edit-task-description"
+  ).value;
+  changedTask.date = document.getElementById("edit-task-date").value;
+  changedTask.prio = selectedPrio;
+
+  // alert(
+  //   "Title: " +
+  //     changedTask.title +
+  //     "\n Description: " +
+  //     changedTask.description +
+  //     "\n Contacts: " +
+  //     changedTask.assignedcontacts +
+  //     "\n Date: " +
+  //     changedTask.date +
+  //     "\n Category: " +
+  //     changedTask.category.name +
+  //     "\n Prio: " +
+  //     selectedPrio +
+  //     "\n Subtasks: " +
+  //     changedTask.subtasks
+  // );
+
+  todos[todoId] = changedTask;
+  await setItem("todos", JSON.stringify(todos));
+  showMessage("Task added");
+  boardInit();
+  mainLoad("main-content", "./templates/board.html");
 }
