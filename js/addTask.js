@@ -94,6 +94,7 @@ function addContactToTask(index) {
     task.assignedcontacts.push(contacts[index]);
   }
   generateChosenContacts();
+  toggleOff("contact-options");
 }
 
 /**
@@ -117,7 +118,7 @@ function generateCategoryAdd() {
   document.getElementById("category-options").innerHTML = "";
   categories.forEach((category, index) => {
     document.getElementById("category-options").innerHTML += `
-    <div id="category-opt-${index}" class="contact-choice" onclick="selectCategory(${index})">
+    <div id="edit-category-opt-${index}" class="contact-choice" onclick="selectCategory(${index})">
       <div class="category-color" style="background-color: ${category.color};">
       </div>
       <div style="flex-grow: 1;">${category.name}</div>

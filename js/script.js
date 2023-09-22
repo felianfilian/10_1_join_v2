@@ -58,7 +58,7 @@ async function mainInit() {
     updateHeader();
     updateSummaryCounter();
     document.addEventListener("click", closeAvatarMenuOutside);
-  }, 200);
+  }, 300);
 }
 
 /**
