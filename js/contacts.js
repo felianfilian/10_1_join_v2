@@ -139,6 +139,7 @@ function editContact() {
   };
   contacts[actualContactId] = tempContact;
   setItem("contacts", JSON.stringify(contacts));
+  toggleOff("contact-detail-container");
   toggleOnOff("editContact-overlay");
   showMessage("Contact changed");
   generateContactList();
