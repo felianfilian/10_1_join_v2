@@ -125,16 +125,6 @@ function generateCategoryAdd() {
     </div>
     `;
   });
-  // OPTIONAL category add
-  //   document.getElementById("category-options").innerHTML += `
-  //     <button type="button" class="button-black" onclick="alert('add category')">
-  //         Add New Category
-  //         <img
-  //         class="btn-icon-img"
-  //         src="./icons/icon_person_white.svg"
-  //       ></img>
-  //     </button>
-  //     `;
 }
 
 /***

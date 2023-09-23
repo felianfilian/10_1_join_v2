@@ -213,23 +213,6 @@ async function editTask() {
   changedTask.date = document.getElementById("edit-task-date").value;
   changedTask.prio = selectedPrio;
 
-  // alert(
-  //   "Title: " +
-  //     changedTask.title +
-  //     "\n Description: " +
-  //     changedTask.description +
-  //     "\n Contacts: " +
-  //     changedTask.assignedcontacts +
-  //     "\n Date: " +
-  //     changedTask.date +
-  //     "\n Category: " +
-  //     changedTask.category.name +
-  //     "\n Prio: " +
-  //     selectedPrio +
-  //     "\n Subtasks: " +
-  //     changedTask.subtasks
-  // );
-
   todos[todoId] = changedTask;
   await setItem("todos", JSON.stringify(todos));
   showMessage("Task added");
