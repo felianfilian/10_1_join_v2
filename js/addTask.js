@@ -49,7 +49,7 @@ function generateContactAdd() {
     `;
   });
   document.getElementById("contact-options").innerHTML += `
-    <button type="button" class="button-black" onclick="toggleOnOff('addContact-overlay');">
+    <button type="button" class="button-grey" onclick="toggleOnOff('addContact-overlay');">
         Add Contact
         <img
         class="btn-icon-img"

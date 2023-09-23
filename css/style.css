@@ -144,6 +144,7 @@ input:focus {
 .button-grey {
   background-color: #2a3647;
   color: #fff;
+  cursor: pointer;
 }
 
 .button-black:hover,
@@ -244,6 +245,8 @@ input:focus {
 }
 
 .main-card {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -319,15 +322,27 @@ input:focus {
 }
 
 @media (max-width: 768px) {
+  .gap-32 {
+    gap: 8px;
+  }
+
+  .blue-hor-divider {
+    margin: 4px 0;
+  }
+
   .container {
     padding: 16px;
+  }
+
+  .form-inputs {
+    padding: 0;
   }
 
   .main-card {
     width: 80%;
     max-width: 80vw;
 
-    padding: 32px 8px;
+    padding: 32px 16px;
   }
 }
 
@@ -474,6 +489,19 @@ input:focus {
   width: 100%;
 
   cursor: pointer;
+}
+
+.btn-back {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  display: flex;
+  justify-content: flex-end;
+
+  cursor: pointer;
+}
+
+.btn-back:hover {
 }
 
 @media (max-width: 768px) {

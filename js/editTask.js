@@ -46,7 +46,7 @@ function editGenerateContactAdd() {
     `;
   });
   document.getElementById("edit-contact-options").innerHTML += `
-    <button type="button" class="button-black" onclick="toggleOnOff('edit-addContact-overlay');">
+    <button type="button" class="button-grey" onclick="toggleOnOff('edit-addContact-overlay');">
         Add Contact
         <img
         class="btn-icon-img"
