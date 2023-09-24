@@ -18,7 +18,9 @@ let btnRight = "";
 function boardInit() {
   loadServerData();
   setTimeout(() => {
+    let overlayBackground = document.getElementById("show-task-overlay");
     updateBoard();
+    overlayBackground.addEventListener("click", closeCardOutside);
   }, 200);
 }
 
@@ -420,5 +422,16 @@ function showCheckbox(index) {
     return "./icons/icon_box.svg";
   } else {
     return "./icons/icon_box_checked.svg";
+  }
+}
+
+/**
+ * close card menu on click outside
+ * @param  event
+ */
+function closeCardOutside(event) {
+  let card = document.getElementById("show-task-overlay");
+  if (card == event.target) {
+    toggleOff("show-task-overlay");
   }
 }

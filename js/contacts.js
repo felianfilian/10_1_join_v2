@@ -9,7 +9,26 @@ let actualContactId;
 async function contactsInit() {
   setTimeout(() => {
     generateContactList();
+    let addContactOverlay = document.getElementById("addContact-overlay");
+    let editContactOverlay = document.getElementById("editContact-overlay");
+    addContactOverlay.addEventListener("click", (event) => {
+      closeCardOutside02(event, "addContact-overlay");
+    });
+    editContactOverlay.addEventListener("click", (event) => {
+      closeCardOutside02(event, "editContact-overlay");
+    });
   }, 200);
+}
+
+/**
+ * close overlay on click outside
+ * @param  event
+ */
+function closeCardOutside02(event, element) {
+  let card = document.getElementById(element);
+  if (card == event.target) {
+    toggleOff(element);
+  }
 }
 
 /**

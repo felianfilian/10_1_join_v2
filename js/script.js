@@ -58,7 +58,6 @@ async function mainInit() {
     updateHeader();
     updateSummaryCounter();
     document.addEventListener("click", closeAvatarMenuOutside);
-    //document.addEventListener("click", closeCardOutside);
   }, 300);
 }
 
@@ -339,18 +338,6 @@ function closeAvatarMenuOutside(event) {
     avatarMenu.classList.add("d-none");
   }
 }
-
-/**
- * close card menu on click outside
- * @param  event
- */
-// function closeCardOutside(event) {
-//   let card = document.getElementById("show-task-overlay");
-//   alert(card);
-//   if (!card.contains(event.target)) {
-//     toggleOff("show-task-overlay");
-//   }
-// }
 
 /**
  * reset all dta from the server
