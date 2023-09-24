@@ -54,7 +54,7 @@
         <input id="contact-email" class="contact-input" type="email" placeholder="E-Mail" required/>
         <input id="contact-phone" class="contact-input" type="number" placeholder="Phone" required/>
         <div class="add-contact-buttons">
-          <button type="button" onclick="clearContactForm(); return false;">
+          <button type="button" onclick="clearContactForm(); toggleOff('addContact-overlay'); return false;">
             Cancel
             <img
               class="btn-icon-img"
@@ -91,7 +91,7 @@
       <input id="edit-contact-email" class="contact-input" type="email" placeholder="E-Mail" required/>
       <input id="edit-contact-phone" class="contact-input" type="number" placeholder="Phone" required/>
       <div class="add-contact-buttons">
-        <button type="button" onclick="clearContactForm(); return false;">
+        <button type="button" onclick="clearContactForm(); toggleOff('editContact-overlay'); return false;">
           Cancel
           <img
             class="btn-icon-img"

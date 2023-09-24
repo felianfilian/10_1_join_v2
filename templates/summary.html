@@ -7,10 +7,10 @@
   </div>
   <div class="sum-main">
     <div class="sum-greeting">
-      <p id="sum-greet" class="fs-32">Good Morning,</p>
-      <p id="sum-name" class="sum-name">Guest</p>
+      <span id="sum-greet" class="fs-32">Good Morning,</span>
+      <span id="sum-name" class="sum-name">Guest</span>
     </div>
-    <div class="sum-tasks-container">
+    <div class="sum-tasks-container gap-16">
       <div class="sum-tasks">
         <div
           class="sum-task-item"
@@ -45,7 +45,11 @@
           class="sum-task-item"
           onclick="mainLoad('main-content', './templates/board.html'); boardInit();"
         >
-          <img src="./icons/priority_urgent_full.svg" alt="" />
+          <img
+            class="sum-task-prio-img"
+            src="./icons/priority_urgent_full.svg"
+            alt=""
+          />
           <div class="sum-column">
             <p id="todo-prio-counter" class="fs-32 fs-b">0</p>
             Urgent

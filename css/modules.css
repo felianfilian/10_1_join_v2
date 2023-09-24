@@ -467,16 +467,13 @@
   border-radius: 50%;
 }
 
-.prio-option {
+.prio-option,
+.prio-option:hover {
   box-sizing: border-box;
 
   width: 32%;
 
   border: 2px solid rgba(0, 0, 0, 0.1);
-}
-
-.prio-option:hover {
-  border: unset;
 }
 
 #add-subtask-container,
